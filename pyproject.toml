@@ -2,14 +2,22 @@
 name = "python-template"
 version = "0.1.0"
 description = "Python template for projects"
-authors = [
-    {name = "dimanu-py", email = "diegomtz126@gmail.com"},
-]
-dependencies = []
-requires-python = "==3.12.*"
 readme = "README.md"
-license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = []
 
-
-[tool.pdm]
-distribution = false
+[dependency-groups]
+test = [
+    "coverage>=7.6.9",
+    "doublex>=1.9.6.1",
+    "doublex-expects>=0.7.1",
+    "expects>=0.9.0",
+    "pytest>=8.3.4",
+    "pytest-watch>=4.2.0",
+    "pytest-xdist>=3.6.1",
+]
+lint = [
+    "mypy>=1.13.0",
+    "ruff>=0.8.3",
+    "yapf>=0.43.0",
+]
