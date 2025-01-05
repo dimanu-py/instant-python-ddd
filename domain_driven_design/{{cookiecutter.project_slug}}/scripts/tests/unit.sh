@@ -24,7 +24,7 @@ function run_tests {
     echo "Running application and domain tests for: $context"
     application_folders=$(find tests/contexts/"$context" -type d -name "application")
     domain_folders=$(find tests/contexts/"$context" -type d -name "domain")
-    uv run pytest -n auto $application_folders $domain_folders -ra
+    {{cookiecutter.dependency_manager}} run pytest -n auto $application_folders $domain_folders -ra
   done
 }
 
