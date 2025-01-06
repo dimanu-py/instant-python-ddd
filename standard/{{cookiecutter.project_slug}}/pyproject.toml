@@ -1,0 +1,32 @@
+[project]
+name = "{{cookiecutter.project_name}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.description}}"
+{% if cookiecutter.dependency_manager == "pdm" %}
+authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"}]
+{% endif %}
+dependencies = []
+requires-python = "=={{cookiecutter.python_version}}.*"
+readme = "README.md"
+license = {text = "{{cookiecutter.license}}"}
+
+{% if cookiecutter.dependency_manager == "pdm" %}
+[tool.pdm]
+distribution = false
+{% endif %}
+
+{% if cookiecutter.install_default_dependencies in ["yes", "y"] %}
+[dependency-groups]
+test = [
+    "coverage>=7.6.9",
+    "doublex>=1.9.6.1",
+    "doublex-expects>=0.7.1",
+    "expects>=0.9.0",
+    "pytest>=8.3.4",
+    "pytest-xdist>=3.6.1",
+]
+lint = [
+    "mypy>=1.13.0",
+    "ruff>=0.8.3",
+]
+{% endif %}
