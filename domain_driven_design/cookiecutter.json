@@ -1,5 +1,5 @@
 {
-  "project_name": "Project Name",
+  "project_name": "project-name",
   "project_slug": "project_name",
   "version": "0.1.0",
   "description": "A short description of the project.",
@@ -9,5 +9,6 @@
   "python_version": ["3.13", "3.12", "3.11", "3.10"],
   "dependency_manager": ["uv", "pdm"],
   "bounded_context_name": "products",
-  "aggregate_name": "product"
+  "aggregate_name": "product",
+  "install_default_dependencies": ["yes", "no"]
 }
