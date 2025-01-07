@@ -23,7 +23,7 @@ function run_tests {
   for context in $contexts; do
     echo "Running integration tests for bounded context: $context"
     infra_folders=$(find tests/contexts/"$context" -type d -name "infra")
-    uv run pytest -n auto $infra_folders -ra
+    {{cookiecutter.dependency_manager}} run pytest -n auto $infra_folders -ra
   done
 }
 
