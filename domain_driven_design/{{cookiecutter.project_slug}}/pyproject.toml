@@ -11,7 +11,7 @@ dependencies = [
 ]
 {% else %}
 dependencies = []
-{% endif % }
+{% endif %}
 requires-python = "=={{cookiecutter.python_version}}.*"
 readme = "README.md"
 license = {text = "{{cookiecutter.license}}"}
