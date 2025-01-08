@@ -5,7 +5,13 @@ description = "{{cookiecutter.description}}"
 {% if cookiecutter.dependency_manager == "pdm" %}
 authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"}]
 {% endif %}
+{% if cookiecutter.install_default_dependencies in ["yes", "y"] %}
+dependencies = [
+    "sqlalchemy>=2.0.36"
+]
+{% else %}
 dependencies = []
+{% endif % }
 requires-python = "=={{cookiecutter.python_version}}.*"
 readme = "README.md"
 license = {text = "{{cookiecutter.license}}"}
