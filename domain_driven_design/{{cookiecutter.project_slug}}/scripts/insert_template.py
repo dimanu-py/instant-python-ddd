@@ -7,14 +7,46 @@ from scripts.templates.required_value_error_template import required_value_error
 from scripts.templates.string_value_object_template import string_value_object_template
 from scripts.templates.uuid_template import uuid_template
 from scripts.templates.value_object_template import value_object_template
+from scripts.templates.value_object_template import int_value_object_template
+from scripts.templates.value_object_template import invalid_negative_value_error_template
+from scripts.templates.domain_event_template import domain_event_template
+from scripts.templates.domain_event_subscriber_template import domain_event_subscriber_template
+from scripts.templates.event_bus_template import event_bus_template
+from scripts.templates.exchange_type_template import exchange_type_template
+from scripts.templates.aggregate_root_template import aggregate_root_template
+from scripts.templates.rabbit_mq_configurer_template import rabbit_mq_configurer_template
+from scripts.templates.rabbit_mq_connection_template import rabbit_mq_connection_template
+from scripts.templates.rabbit_mq_consumer_template import rabbit_mq_consumer_template
+from scripts.templates.rabbit_mq_event_bus_template import rabbit_mq_event_bus_template
+from scripts.templates.rabbit_mq_queue_formatter_template import rabbit_mq_queue_formatter_template
+from scripts.templates.rabbit_mq_settings_template import rabbit_mq_settings_template
+from scripts.templates.domain_event_json_deserializer_template import domain_event_json_deserializer_template
+from scripts.templates.domain_event_json_serializer_template import domain_event_json_serializer_template
+
 
 TEMPLATES = {
 	"value_object": value_object_template,
 	"string_value_object": string_value_object_template,
+	"int_value_object": int_value_object_template,
 	"uuid": uuid_template,
 	"incorrect_value": incorrect_value_type_error_template,
-	"required_value": required_value_error_template
+	"required_value": required_value_error_template,
+	"invalid_negative_value": invalid_negative_value_error_template,
+	"domain_event": domain_event_template,
+	"domain_event_subscriber": domain_event_subscriber_template,
+	"event_bus": event_bus_template,
+	"exchange_type": exchange_type_template,
+	"aggregate_root": aggregate_root_template,
+	"rabbit_mq_configurer": rabbit_mq_configurer_template,
+	"rabbit_mq_connection": rabbit_mq_connection_template,
+	"rabbit_mq_consumer": rabbit_mq_consumer_template,
+	"rabbit_mq_event_bus": rabbit_mq_event_bus_template,
+	"rabbit_mq_queue_formatter": rabbit_mq_queue_formatter_template,
+	"rabbit_mq_settings": rabbit_mq_settings_template,
+	"domain_event_json_deserializer": domain_event_json_deserializer_template,
+	"domain_event_json_serializer": domain_event_json_serializer_template,
 }
+
 
 def main() -> None:
 	list_available_templates()
