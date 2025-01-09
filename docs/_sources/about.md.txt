@@ -1,4 +1,0 @@
-# About
-
-This template is designed to provide a robust starting point for Python projects, whether you're building a small application or a complex
-SaaS platform. It includes a well-structured project layout and tools to simplify development tasks.
