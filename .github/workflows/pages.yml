@@ -32,8 +32,7 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          pip install uv
-          uv sync --all-groups
+          pip install sphinx myst-parser sphinx-wagtail-theme
       - name: Build documentation
         run: |
           cd docs
