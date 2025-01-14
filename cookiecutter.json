@@ -1,12 +1,12 @@
 {
   "templates": {
     "standard": {
-      "path": "./standard",
+      "path": "./src/standard",
       "title": "Standard",
       "description": "A standard Python project template."
     },
     "domain-driven-design": {
-      "path": "./domain_driven_design",
+      "path": "./src/domain_driven_design",
       "title": "DDD",
       "description": "A Domain-Driven Design Python project template."
     }
