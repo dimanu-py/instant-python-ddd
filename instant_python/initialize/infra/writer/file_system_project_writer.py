@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from instant_python.initialize.domain.project_structure import ProjectStructure
-from instant_python.initialize.domain.project_writer import ProjectWriter, NodeWriter
+from instant_python.initialize.domain.project_writer import NodeWriter, ProjectWriter
 
 
 class FileSystemNodeWriter(NodeWriter):

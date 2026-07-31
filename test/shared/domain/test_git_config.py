@@ -1,7 +1,6 @@
-from typing import Union
 
 import pytest
-from expects import expect, be_true, be_none, be_false, raise_error
+from expects import be_false, be_none, be_true, expect, raise_error
 
 from instant_python.shared.domain.git_config import GitUserOrEmailNotPresent
 from test.shared.domain.mothers.git_config_mother import GitConfigMother
@@ -29,7 +28,7 @@ class TestGitConfig:
             pytest.param("", id="username is empty"),
         ],
     )
-    def test_should_not_allow_to_initialize_git_if_user_is_not_present(self, username: Union[str, None]) -> None:
+    def test_should_not_allow_to_initialize_git_if_user_is_not_present(self, username: str | None) -> None:
         expect(lambda: GitConfigMother.with_parameters(username=username)).to(raise_error(GitUserOrEmailNotPresent))
 
     @pytest.mark.parametrize(
@@ -39,5 +38,5 @@ class TestGitConfig:
             pytest.param("", id="email is empty"),
         ],
     )
-    def test_should_not_allow_to_initialize_git_if_email_is_not_present(self, email: Union[str, None]) -> None:
+    def test_should_not_allow_to_initialize_git_if_email_is_not_present(self, email: str | None) -> None:
         expect(lambda: GitConfigMother.with_parameters(email=None)).to(raise_error(GitUserOrEmailNotPresent))

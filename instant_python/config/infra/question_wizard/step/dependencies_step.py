@@ -1,4 +1,3 @@
-from typing import Union
 
 from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.config.infra.question_wizard.step.steps import Step
@@ -11,7 +10,7 @@ class DependenciesStep(Step):
         super().__init__(questionary)
         self._dependencies = []
 
-    def run(self) -> dict[str, list[dict[str, Union[str, bool]]]]:
+    def run(self) -> dict[str, list[dict[str, str | bool]]]:
         while True:
             if not self._user_wants_to_install_dependencies():
                 break

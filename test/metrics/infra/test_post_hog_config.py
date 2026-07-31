@@ -1,5 +1,5 @@
 import pytest
-from expects import be_true, expect, be_false, equal
+from expects import be_false, be_true, equal, expect
 
 from instant_python.metrics.infra.post_hog_config import PostHogConfig
 

@@ -1,6 +1,6 @@
+from instant_python.config.domain.question_wizard import QuestionWizard
 from instant_python.shared.domain.config_repository import ConfigRepository
 from instant_python.shared.domain.config_schema import ConfigSchema
-from instant_python.config.domain.question_wizard import QuestionWizard
 
 
 class ConfigGenerator:

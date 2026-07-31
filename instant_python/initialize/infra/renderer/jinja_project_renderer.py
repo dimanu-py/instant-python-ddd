@@ -3,11 +3,11 @@ from pathlib import Path
 import yaml
 from jinja2 import TemplateNotFound
 
-from instant_python.shared.domain.config_schema import ConfigSchema
 from instant_python.initialize.domain.node import NodeType
 from instant_python.initialize.domain.project_renderer import ProjectRenderer
 from instant_python.initialize.domain.project_structure import ProjectStructure
 from instant_python.initialize.infra.renderer.jinja_environment import JinjaEnvironment
+from instant_python.shared.domain.config_schema import ConfigSchema
 from instant_python.shared.supported_templates import SupportedTemplates
 
 

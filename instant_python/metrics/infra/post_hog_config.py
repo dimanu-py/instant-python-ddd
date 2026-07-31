@@ -1,6 +1,5 @@
 from pydantic import Field
-
-from pydantic_settings import SettingsConfigDict, BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class PostHogConfig(BaseSettings):

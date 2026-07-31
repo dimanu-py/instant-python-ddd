@@ -1,4 +1,5 @@
 import random
+from typing import ClassVar
 
 from instant_python.shared.domain.general_config import (
     GeneralConfig,
@@ -7,9 +8,9 @@ from test.random_generator import RandomGenerator
 
 
 class GeneralConfigMother:
-    _SUPPORTED_DEPENDENCY_MANAGERS = ["uv", "pdm"]
-    _SUPPORTED_PYTHON_VERSIONS = ["3.10", "3.11", "3.12", "3.13"]
-    _SUPPORTED_LICENSES = ["MIT", "Apache", "GPL"]
+    _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = ["uv", "pdm"]
+    _SUPPORTED_PYTHON_VERSIONS: ClassVar[list[str]] = ["3.10", "3.11", "3.12", "3.13"]
+    _SUPPORTED_LICENSES: ClassVar[list[str]] = ["MIT", "Apache", "GPL"]
 
     @classmethod
     def any(cls) -> GeneralConfig:

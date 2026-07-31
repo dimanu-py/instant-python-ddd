@@ -1,6 +1,6 @@
 from collections.abc import Iterator
 
-from instant_python.initialize.domain.node import Node, NodeType, Directory, File
+from instant_python.initialize.domain.node import Directory, File, Node, NodeType
 from instant_python.shared.application_error import ApplicationError
 
 

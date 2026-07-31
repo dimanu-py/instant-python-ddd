@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import TypedDict, Union
+from typing import TypedDict
 
+from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.domain.dependency_config import (
     DependencyConfig,
 )
@@ -12,7 +13,6 @@ from instant_python.shared.domain.git_config import GitConfig
 from instant_python.shared.domain.template_config import (
     TemplateConfig,
 )
-from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.supported_templates import SupportedTemplates
 
 _GENERAL = "general"
@@ -34,7 +34,7 @@ class ConfigSchema:
 
     @classmethod
     def from_primitives(
-        cls, content: dict[str, Union[dict, list]], custom_config_path: Union[Path, None] = None
+        cls, content: dict[str, dict | list], custom_config_path: Path | None = None
     ) -> "ConfigSchema":
         cls._ensure_config_is_not_empty(content)
         cls._ensure_all_required_sections_are_present(content)
@@ -47,12 +47,12 @@ class ConfigSchema:
         )
 
     @classmethod
-    def _ensure_config_is_not_empty(cls, content: dict[str, Union[dict, list]]) -> None:
+    def _ensure_config_is_not_empty(cls, content: dict[str, dict | list]) -> None:
         if not content:
             raise EmptyConfigurationNotAllowed
 
     @classmethod
-    def _ensure_all_required_sections_are_present(cls, content: dict[str, Union[dict, list]]):
+    def _ensure_all_required_sections_are_present(cls, content: dict[str, dict | list]):
         missing_keys = [key for key in _REQUIRED_CONFIG_KEYS if key not in content]
         if missing_keys:
             raise ConfigKeyNotPresent(missing_keys, _REQUIRED_CONFIG_KEYS)
@@ -104,9 +104,9 @@ class ConfigSchema:
 
 class ConfigSchemaPrimitives(TypedDict):
     general: dict[str, str]
-    dependencies: list[dict[str, Union[str, bool]]]
-    template: dict[str, Union[str, list[str]]]
-    git: dict[str, Union[str, bool]]
+    dependencies: list[dict[str, str | bool]]
+    template: dict[str, str | list[str]]
+    git: dict[str, str | bool]
 
 
 class ConfigKeyNotPresent(ApplicationError):

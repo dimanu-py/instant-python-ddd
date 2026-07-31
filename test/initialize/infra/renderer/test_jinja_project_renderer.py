@@ -1,4 +1,4 @@
-from expects import be_none, expect, be_empty, be_false, be_true
+from expects import be_empty, be_false, be_none, be_true, expect
 
 from instant_python.initialize.domain.node import File
 from instant_python.initialize.infra.renderer.jinja_environment import JinjaEnvironment

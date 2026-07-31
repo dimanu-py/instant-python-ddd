@@ -3,7 +3,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-from expects import expect, be_a, equal, be_true, have_keys
+from expects import be_a, be_true, equal, expect, have_keys
 
 from instant_python.metrics.infra.user_identity_manager import UserIdentityManager
 

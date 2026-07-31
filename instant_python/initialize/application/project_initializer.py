@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from instant_python.shared.domain.config_schema import ConfigSchema
 from instant_python.initialize.domain.env_manager import EnvManager
 from instant_python.initialize.domain.project_formatter import ProjectFormatter
 from instant_python.initialize.domain.project_renderer import ProjectRenderer
 from instant_python.initialize.domain.project_writer import ProjectWriter
 from instant_python.initialize.domain.version_control_configurer import VersionControlConfigurer
+from instant_python.shared.domain.config_schema import ConfigSchema
 
 
 class ProjectInitializer:

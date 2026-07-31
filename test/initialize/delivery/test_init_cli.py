@@ -7,7 +7,7 @@ from contextlib import contextmanager
 
 import pytest
 import yaml
-from approvaltests import verify_all_combinations, verify
+from approvaltests import verify, verify_all_combinations
 from typer.testing import CliRunner
 
 from instant_python.initialize.delivery.cli import app

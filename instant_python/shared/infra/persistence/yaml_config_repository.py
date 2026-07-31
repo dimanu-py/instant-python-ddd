@@ -1,11 +1,11 @@
+import shutil
 from pathlib import Path
 
-import shutil
 import yaml
 
-from instant_python.shared.domain.config_schema import ConfigSchema
-from instant_python.shared.domain.config_repository import ConfigRepository
 from instant_python.shared.application_error import ApplicationError
+from instant_python.shared.domain.config_repository import ConfigRepository
+from instant_python.shared.domain.config_schema import ConfigSchema
 
 
 class YamlConfigRepository(ConfigRepository):

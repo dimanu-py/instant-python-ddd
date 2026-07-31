@@ -1,4 +1,4 @@
-from doublex import Mock, expect_call, ANY_ARG
+from doublex import ANY_ARG, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect
 

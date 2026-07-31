@@ -1,7 +1,7 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
-from instant_python.shared.domain.config_schema import ConfigSchema
 from instant_python.initialize.domain.project_structure import ProjectStructure
+from instant_python.shared.domain.config_schema import ConfigSchema
 
 
 class ProjectRenderer(ABC):

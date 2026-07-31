@@ -1,9 +1,9 @@
 import shutil
 import tempfile
 
-from expects import expect, be_true, be_false, equal, contain, raise_error
+from expects import be_false, be_true, contain, equal, expect, raise_error
 
-from instant_python.initialize.infra.env_manager.system_console import SystemConsole, CommandExecutionError
+from instant_python.initialize.infra.env_manager.system_console import CommandExecutionError, SystemConsole
 
 
 class TestSystemCommandExecutor:

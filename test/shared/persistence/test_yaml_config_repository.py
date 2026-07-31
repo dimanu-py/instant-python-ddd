@@ -1,11 +1,11 @@
 import tempfile
 from pathlib import Path
 
-from expects import expect, raise_error, equal
+from expects import equal, expect, raise_error
 
 from instant_python.shared.infra.persistence.yaml_config_repository import (
-    YamlConfigRepository,
     ConfigurationFileNotFound,
+    YamlConfigRepository,
 )
 from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 

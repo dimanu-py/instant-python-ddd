@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 
 from instant_python.shared.application_error import ApplicationError
 
@@ -22,7 +22,7 @@ class DependencyConfig:
             return (f"--group {self.group}",)
         elif self.is_dev:
             return ("--dev",)
-        return tuple()
+        return ()
 
     def get_specification(self) -> str:
         if self.version == "latest":

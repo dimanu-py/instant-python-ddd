@@ -21,7 +21,7 @@ class SystemConsole:
     def execute(self, command: str) -> CommandExecutionResult:
         try:
             return self._run_command(command)
-        except Exception as error:
+        except Exception as error:  # noqa: BLE001
             return self._unexpected_error_result(error)
 
     def execute_or_raise(self, command: str) -> CommandExecutionResult:
@@ -58,7 +58,7 @@ class SystemConsole:
 
 
 class CommandExecutionError(ApplicationError):
-    def __init__(self, exit_code: int, stderr_output: str = None) -> None:
+    def __init__(self, exit_code: int, stderr_output: str | None = None) -> None:
         message = f"Unexpected error when executing a command, exit code {exit_code}"
         if stderr_output:
             message += f": {stderr_output}"

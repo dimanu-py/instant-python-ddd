@@ -1,9 +1,9 @@
 import sys
 from pathlib import Path
 
-from instant_python.shared.domain.dependency_config import DependencyConfig
 from instant_python.initialize.domain.env_manager import EnvManager
 from instant_python.initialize.infra.env_manager.system_console import SystemConsole
+from instant_python.shared.domain.dependency_config import DependencyConfig
 
 
 class UvEnvManager(EnvManager):
@@ -39,7 +39,7 @@ class UvEnvManager(EnvManager):
 
     def _set_uv_executable_based_on_os(self):
         return (
-            f"{str(Path.home() / '.local' / 'bin' / 'uv.exe')}"
+            f"{Path.home() / '.local' / 'bin' / 'uv.exe'!s}"
             if self._system_os.startswith("win")
             else "~/.local/bin/uv"
         )

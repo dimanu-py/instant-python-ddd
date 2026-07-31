@@ -1,4 +1,5 @@
 import random
+from typing import ClassVar
 
 from instant_python.shared.domain.template_config import (
     TemplateConfig,
@@ -6,13 +7,13 @@ from instant_python.shared.domain.template_config import (
 
 
 class TemplateConfigMother:
-    _SUPPORTED_TEMPLATES = [
+    _SUPPORTED_TEMPLATES: ClassVar[list[str]] = [
         "domain_driven_design",
         "clean_architecture",
         "standard_project",
         "custom",
     ]
-    _SUPPORTED_BUILT_IN_FEATURES = [
+    _SUPPORTED_BUILT_IN_FEATURES: ClassVar[list[str]] = [
         "value_objects",
         "github_actions",
         "makefile",

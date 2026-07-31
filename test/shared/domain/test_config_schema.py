@@ -1,6 +1,6 @@
-from expects import expect, raise_error, be_none
+from expects import be_none, expect, raise_error
 
-from instant_python.shared.domain.config_schema import ConfigSchema, ConfigKeyNotPresent, EmptyConfigurationNotAllowed
+from instant_python.shared.domain.config_schema import ConfigKeyNotPresent, ConfigSchema, EmptyConfigurationNotAllowed
 
 
 class TestConfigSchema:

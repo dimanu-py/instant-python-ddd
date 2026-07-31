@@ -1,11 +1,13 @@
-from doublex import Mock, Mimic, expect_call
+from typing import ClassVar
+
+from doublex import Mimic, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect, raise_error
 
-from instant_python.initialize.infra.env_manager.system_console import SystemConsole, CommandExecutionError
 from instant_python.initialize.infra.env_manager.pdm_env_manager import PdmEnvManager
-from test.shared.domain.mothers.dependency_config_mother import DependencyConfigMother
+from instant_python.initialize.infra.env_manager.system_console import CommandExecutionError, SystemConsole
 from test.initialize.infra.env_manager.mother.command_execution_result_mother import CommandExecutionResultMother
+from test.shared.domain.mothers.dependency_config_mother import DependencyConfigMother
 
 
 class TestPdmEnvManager:
@@ -14,7 +16,7 @@ class TestPdmEnvManager:
     _FAILED_COMMAND_RESULT = CommandExecutionResultMother.failure()
     _A_PYTHON_VERSION = "3.12"
     _A_DEPENDENCY = DependencyConfigMother.with_parameter(name="requests", version="latest")
-    _NO_DEPENDENCIES = []
+    _NO_DEPENDENCIES: ClassVar[list] = []
 
     def setup_method(self) -> None:
         self._console = Mimic(Mock, SystemConsole)

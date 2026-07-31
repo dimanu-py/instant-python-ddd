@@ -1,5 +1,5 @@
-from datetime import datetime
-from dataclasses import dataclass, asdict, field
+from dataclasses import asdict, dataclass, field
+from datetime import UTC, datetime
 from typing import ClassVar
 
 from instant_python.shared.application_error import ApplicationError
@@ -18,7 +18,7 @@ class GeneralConfig:
     license: str
     python_version: str
     dependency_manager: str
-    year: int = field(default=datetime.now().year)
+    year: int = field(default=datetime.now(tz=UTC).year)
 
     _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = SupportedManagers.get_supported_managers()
     _SUPPORTED_PYTHON_VERSIONS: ClassVar[list[str]] = SupportedPythonVersions.get_supported_versions()

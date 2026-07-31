@@ -32,7 +32,7 @@ class MetricsMiddleware(TyperGroup):
             self._execute_command(ctx)
         except Exception as exception:
             self._send_error_metrics(ctx, exception)
-            raise exception
+            raise
         self._send_success_metrics(config_path, config_snapshot, ctx)
 
     def _send_success_metrics(self, config_path: Path, config_snapshot: ConfigSnapshot, ctx: Context) -> None:
