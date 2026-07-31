@@ -143,3 +143,5 @@ cython_debug/
 
 # Agents
 .opencode
+.claude
+CLAUDE.md
