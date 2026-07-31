@@ -434,7 +434,7 @@ Templates for AI-assisted software development environment.
         - name: craftsman_leader
           type: file
           extension: .md
-          template: agents/agents/craftsman_leader.md
+          template: agents/agents/leader.md
         - name: spec_partner
           type: file
           extension: .md

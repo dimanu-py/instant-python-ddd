@@ -47,7 +47,7 @@
         - name: craftsman_leader
           type: file
           extension: .md
-          template: agents/agents/craftsman_leader.md
+          template: agents/agents/leader.md
         - name: judge
           type: file
           extension: .md
