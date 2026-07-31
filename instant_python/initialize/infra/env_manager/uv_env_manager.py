@@ -39,9 +39,7 @@ class UvEnvManager(EnvManager):
 
     def _set_uv_executable_based_on_os(self):
         return (
-            f"{Path.home() / '.local' / 'bin' / 'uv.exe'!s}"
-            if self._system_os.startswith("win")
-            else "~/.local/bin/uv"
+            f"{Path.home() / '.local' / 'bin' / 'uv.exe'!s}" if self._system_os.startswith("win") else "~/.local/bin/uv"
         )
 
     def _install_python(self, version: str) -> None:

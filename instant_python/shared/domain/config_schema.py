@@ -33,9 +33,7 @@ class ConfigSchema:
     _DEFAULT_CONFIG_PATH: Path = Path.cwd() / "ipy.yml"
 
     @classmethod
-    def from_primitives(
-        cls, content: dict[str, dict | list], custom_config_path: Path | None = None
-    ) -> "ConfigSchema":
+    def from_primitives(cls, content: dict[str, dict | list], custom_config_path: Path | None = None) -> "ConfigSchema":
         cls._ensure_config_is_not_empty(content)
         cls._ensure_all_required_sections_are_present(content)
         return cls(

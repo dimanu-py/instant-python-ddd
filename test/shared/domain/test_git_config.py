@@ -1,4 +1,3 @@
-
 import pytest
 from expects import be_false, be_none, be_true, expect, raise_error
 

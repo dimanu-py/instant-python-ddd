@@ -1,4 +1,3 @@
-
 from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.config.infra.question_wizard.step.steps import Step
 from instant_python.shared.supported_built_in_features import SupportedBuiltInFeatures
