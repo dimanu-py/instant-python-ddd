@@ -1,16 +1,17 @@
 from collections.abc import Callable
-from typing import Any
+from typing import Any, ClassVar
+
+from jinja2 import ChoiceLoader, Environment, FileSystemLoader, PackageLoader
 
 from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.supported_templates import SupportedTemplates
-from jinja2 import Environment, FileSystemLoader, ChoiceLoader, PackageLoader
 
 
 class JinjaEnvironment:
-    _EMPTY_CONTEXT = {}
-    _BASE_PACKAGE_NAME = "instant_python"
-    _PROJECT_STRUCTURE_TEMPLATE_PATH = "templates/project_structure"
-    _BOILERPLATE_TEMPLATE_PATH = "templates/boilerplate"
+    _EMPTY_CONTEXT: ClassVar[dict] = {}
+    _BASE_PACKAGE_NAME: ClassVar[str] = "instant_python"
+    _PROJECT_STRUCTURE_TEMPLATE_PATH: ClassVar[str] = "templates/project_structure"
+    _BOILERPLATE_TEMPLATE_PATH: ClassVar[str] = "templates/boilerplate"
 
     def __init__(self, user_template_path: str | None = None) -> None:
         self._env = Environment(

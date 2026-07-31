@@ -1,6 +1,6 @@
 import sys
 from collections.abc import Callable
-from typing import Any
+from typing import Any, ClassVar
 
 import typer
 
@@ -9,7 +9,7 @@ ErrorHandlingCallback = Callable[[Exception], None]
 
 
 class InstantPythonTyper(typer.Typer):
-    error_handlers: dict[ExceptionType, ErrorHandlingCallback] = {}
+    error_handlers: ClassVar[dict[ExceptionType, ErrorHandlingCallback]] = {}
 
     def error_handler(self, exc: ExceptionType) -> Callable[[Callable[[Exception], None]], Callable[[Exception], None]]:
         """Registers a callback function to be called when 'exc' (the given exception) is raised."""

@@ -1,8 +1,8 @@
 import typer
 
 from instant_python.config.application.config_generator import ConfigGenerator
-from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.config.infra.question_wizard.questionary_console_wizard import QuestionaryConsoleWizard
+from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.shared.infra.persistence.yaml_config_repository import YamlConfigRepository
 
 app = typer.Typer()

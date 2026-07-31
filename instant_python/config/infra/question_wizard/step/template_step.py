@@ -1,5 +1,3 @@
-from typing import Union
-
 from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.config.infra.question_wizard.step.steps import Step
 from instant_python.shared.supported_built_in_features import SupportedBuiltInFeatures
@@ -13,7 +11,7 @@ class TemplateStep(Step):
         super().__init__(questionary)
         self._answers = {}
 
-    def run(self) -> dict[str, dict[str, Union[str, list[str]]]]:
+    def run(self) -> dict[str, dict[str, str | list[str]]]:
         name = self._choose_template_name_from_options()
 
         if name == SupportedTemplates.DDD and self._user_wants_to_specify_bounded_context():

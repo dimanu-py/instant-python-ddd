@@ -1,6 +1,6 @@
-from instant_python.shared.domain.git_config import GitConfig
 from instant_python.initialize.domain.version_control_configurer import VersionControlConfigurer
 from instant_python.initialize.infra.env_manager.system_console import SystemConsole
+from instant_python.shared.domain.git_config import GitConfig
 
 
 class GitConfigurer(VersionControlConfigurer):

@@ -1,8 +1,8 @@
-from doublex import Mock, Mimic, expect_call
+from doublex import Mimic, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect, raise_error
 
-from instant_python.initialize.infra.env_manager.system_console import SystemConsole, CommandExecutionError
+from instant_python.initialize.infra.env_manager.system_console import CommandExecutionError, SystemConsole
 from instant_python.initialize.infra.formatter.ruff_project_formatter import RuffProjectFormatter
 from test.initialize.infra.env_manager.mother.command_execution_result_mother import CommandExecutionResultMother
 

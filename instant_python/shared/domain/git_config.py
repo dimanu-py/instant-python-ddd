@@ -1,5 +1,4 @@
-from dataclasses import dataclass, field, asdict
-from typing import Optional
+from dataclasses import asdict, dataclass, field
 
 from instant_python.shared.application_error import ApplicationError
 
@@ -7,8 +6,8 @@ from instant_python.shared.application_error import ApplicationError
 @dataclass
 class GitConfig:
     initialize: bool
-    username: Optional[str] = field(default=None)
-    email: Optional[str] = field(default=None)
+    username: str | None = field(default=None)
+    email: str | None = field(default=None)
 
     def __post_init__(self) -> None:
         self._ensure_username_and_email_are_set_if_initializing()

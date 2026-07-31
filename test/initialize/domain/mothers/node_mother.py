@@ -1,4 +1,6 @@
-from instant_python.initialize.domain.node import File, Directory, Node
+from typing import ClassVar
+
+from instant_python.initialize.domain.node import Directory, File, Node
 from test.random_generator import RandomGenerator
 
 
@@ -17,7 +19,7 @@ class FileMother:
 
 class DirectoryMother:
     _PYTHON_MODULE = True
-    _EMPTY = []
+    _EMPTY: ClassVar[list] = []
 
     @classmethod
     def without_children(cls, name: str | None = None, is_python_module: bool | None = None) -> Directory:

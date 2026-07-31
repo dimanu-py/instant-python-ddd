@@ -1,12 +1,12 @@
-from expects import be_none, expect, have_keys, equal, raise_error, be_true, be_false
+from expects import be_false, be_none, be_true, equal, expect, have_keys, raise_error
 from jinja2 import TemplateNotFound
 
 from instant_python.initialize.infra.renderer.jinja_environment import (
     JinjaEnvironment,
-    _is_in,
-    _has_dependency,
-    _compute_base_path,
     UnknownTemplateError,
+    _compute_base_path,
+    _has_dependency,
+    _is_in,
     _resolve_import_path,
 )
 from instant_python.shared.supported_templates import SupportedTemplates

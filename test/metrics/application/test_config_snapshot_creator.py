@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from doublex import expect_call, Mock
-from expects import expect, equal, be_false, be_true
+from doublex import Mock, expect_call
+from expects import be_false, be_true, equal, expect
 
 from instant_python.metrics.application.config_snapshot_creator import ConfigSnapshotCreator
 from instant_python.metrics.domain.config_snapshot import ConfigSnapshot

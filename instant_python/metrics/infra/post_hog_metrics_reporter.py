@@ -28,7 +28,7 @@ class PostHogMetricsReporter(MetricsReporter):
                 properties=metrics.to_primitives(),
             )
             self._client.flush()
-        except Exception:
+        except Exception:  # noqa: BLE001, S110
             pass  # Fire and forget strategy to avoid impacting user experience
 
     def send_error(self, error: Exception, metrics: ErrorMetricsEvent) -> None:
@@ -42,5 +42,5 @@ class PostHogMetricsReporter(MetricsReporter):
                 properties=metrics.to_primitives(),
             )
             self._client.flush()
-        except Exception:
+        except Exception:  # noqa: BLE001, S110
             pass  # Fire and forget strategy to avoid impacting user experience

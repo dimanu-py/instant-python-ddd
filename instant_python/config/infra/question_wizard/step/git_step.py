@@ -1,5 +1,3 @@
-from typing import Union
-
 from instant_python.config.infra.question_wizard.step.questionary import Questionary
 from instant_python.config.infra.question_wizard.step.steps import Step
 
@@ -11,7 +9,7 @@ class GitStep(Step):
         super().__init__(questionary)
         self._answers = {}
 
-    def run(self) -> dict[str, dict[str, Union[str, bool]]]:
+    def run(self) -> dict[str, dict[str, str | bool]]:
         if not self._user_wants_initialize_git_repository():
             return {self._KEY: self._answers}
 
