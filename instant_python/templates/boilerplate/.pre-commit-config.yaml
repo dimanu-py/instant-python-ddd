@@ -54,7 +54,6 @@ repos:
         stages:
           - commit-msg
 
-  {% if "makefile" in template.built_in_features %}
   - repo: local
     hooks:
       - id: lint
@@ -70,4 +69,3 @@ repos:
         language: system
         stages:
           - pre-push
-  {% endif %}

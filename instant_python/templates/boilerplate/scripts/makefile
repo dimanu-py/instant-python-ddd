@@ -94,7 +94,7 @@ check-typing:  ## Run mypy type checking.
 	@{{ general.dependency_manager }} run pyrefly
 {% endif %}
 
-{% if dependencies | has_dependency("ruff") or has_github_actions_or_makefile %}
+{% if dependencies | has_dependency("ruff") or has_github_actions_or_makefile or has_pre_commit_hooks %}
 .PHONY: check-lint
 check-lint:  ## Run ruff linting check.
 	@echo "⌛ Running linting check...\n"
