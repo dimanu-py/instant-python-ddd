@@ -112,7 +112,7 @@ jobs:
         with:
           category: '/language:python'
 
-  {% if "precommit_hooks" in template.built_in_features %}
+  {% if "precommit_hook" in template.built_in_features %}
   secrets:
     name: secrets-scan
     runs-on: ubuntu-latest
