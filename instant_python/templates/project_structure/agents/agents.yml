@@ -8,10 +8,6 @@
     - name: conventions
       type: directory
       children:
-        - name: convention_guidelines
-          type: file
-          extension: .md
-          template: agents/convention_guidelines.md
         - name: testing
           type: directory
           children:
@@ -19,15 +15,23 @@
               type: file
               extension: .md
               template: agents/tdd_outside_in.md
-        - name: workflow
-          type: directory
-          children:
-            - name: leader_workflow
-              type: file
-              extension: .md
-              template: agents/leader_workflow.md
-    - name: features
+    - name: specs
       type: directory
+    - name: agents
+      type: directory
+      children:
+        - name: spec_guidelines
+          type: file
+          extension: .md
+          template: agents/spec_guidelines.md
+        - name: convention_guidelines
+          type: file
+          extension: .md
+          template: agents/convention_guidelines.md
+        - name: leader_workflow
+          type: file
+          extension: .md
+          template: agents/leader_workflow.md
     - name: progress
       type: directory
     - name: tasks
@@ -44,7 +48,7 @@
           type: file
           extension: .md
           template: agents/agents/convention_keeper.md
-        - name: craftsman_leader
+        - name: leader
           type: file
           extension: .md
           template: agents/agents/leader.md
@@ -63,18 +67,10 @@
     - name: commands
       type: directory
       children:
-        - name: code_review
-          type: file
-          extension: .md
-          template: agents/commands/code_review.md
         - name: commit
           type: file
           extension: .md
           template: agents/commands/commit.md
-        - name: security_review
-          type: file
-          extension: .md
-          template: agents/commands/security_review.md
         - name: technical_debt_review
           type: file
           extension: .md
@@ -82,6 +78,20 @@
     - name: skills
       type: directory
       children:
+        - name: code_review
+          type: directory
+          children:
+            - name: SKILL
+              type: file
+              extension: .md
+              template: agents/skills/code_review/SKILL.md
+        - name: security_review
+          type: directory
+          children:
+            - name: SKILL
+              type: file
+              extension: .md
+              template: agents/skills/security_review/SKILL.md
         - name: complexity_review
           type: directory
           children:
@@ -93,13 +103,6 @@
               type: file
               extension: .md
               template: agents/skills/complexity_review/REFERENCE.md
-        - name: convention
-          type: directory
-          children:
-            - name: SKILL
-              type: file
-              extension: .md
-              template: agents/skills/convention/SKILL.md
         - name: hamburger_method
           type: directory
           children:
@@ -129,13 +132,6 @@
               type: file
               extension: .md
               template: agents/skills/mutation_testing/SKILL.md
-        - name: spec
-          type: directory
-          children:
-            - name: SKILL
-              type: file
-              extension: .md
-              template: agents/skills/spec/SKILL.md
         - name: story_splitting
           type: directory
           children:

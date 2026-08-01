@@ -454,18 +454,10 @@ Templates for AI-assisted software development environment.
     - name: commands
       type: directory
       children:
-        - name: code_review
-          type: file
-          extension: .md
-          template: agents/commands/code_review.md
         - name: commit
           type: file
           extension: .md
           template: agents/commands/commit.md
-        - name: security_review
-          type: file
-          extension: .md
-          template: agents/commands/security_review.md
         - name: technical_debt_review
           type: file
           extension: .md
@@ -473,13 +465,27 @@ Templates for AI-assisted software development environment.
     - name: skills
       type: directory
       children:
+        - name: code_review
+          type: directory
+          children:
+            - name: SKILL
+              type: file
+              extension: .md
+              template: agents/skills/code_review/spec_guidelines.md
+        - name: security_review
+          type: directory
+          children:
+            - name: SKILL
+              type: file
+              extension: .md
+              template: agents/skills/security_review/spec_guidelines.md
         - name: complexity_review
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/complexity_review/SKILL.md
+              template: agents/skills/complexity_review/spec_guidelines.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -490,14 +496,14 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/convention/SKILL.md
+              template: agents/skills/convention/spec_guidelines.md
         - name: hamburger_method
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/hamburger_method/SKILL.md
+              template: agents/skills/hamburger_method/spec_guidelines.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -508,7 +514,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/micro_steps_coach/SKILL.md
+              template: agents/skills/micro_steps_coach/spec_guidelines.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -519,21 +525,21 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/mutation_testing/SKILL.md
+              template: agents/skills/mutation_testing/spec_guidelines.md
         - name: spec
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/spec/SKILL.md
+              template: agents/skills/spec/spec_guidelines.md
         - name: story_splitting
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/story_splitting/SKILL.md
+              template: agents/skills/story_splitting/spec_guidelines.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -544,7 +550,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/test_desiderata/SKILL.md
+              template: agents/skills/test_desiderata/spec_guidelines.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -555,7 +561,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/xp_refactor/SKILL.md
+              template: agents/skills/xp_refactor/spec_guidelines.md
 ```
 
 ---

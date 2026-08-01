@@ -142,6 +142,12 @@ asyncio_mode = "auto"
 {% endif %}
 {% endif %}
 
+{% if dependencies | has_dependency("mutmut") or "ai_agents" in template.built_in_features %}
+[tool.mutmut]
+source_paths = ["{{ general.source_name }}/"]
+pytest_add_cli_args_test_selection = ["test/"]
+{% endif %}
+
 {% if "github_actions" in template.built_in_features %}
 [project.optional-dependencies]
 build = ["uv"]

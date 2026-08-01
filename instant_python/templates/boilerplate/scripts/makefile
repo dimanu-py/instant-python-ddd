@@ -202,6 +202,11 @@ opencode:  ## Create symlinks for OpenCode compatibility.
 	@ln -s ../.agents/agents .opencode/agents
 	@ls -la .opencode
 
+.PHONY: mutate
+mutate:  ## Run mutation testing (optional: MUTATE_PATH={{ general.source_name }}/<module>/).
+	@echo "⌛ Running mutation testing...\n"
+	@{{ general.dependency_manager }} run mutmut run $(or $(MUTATE_PATH),{{ general.source_name }})
+	@{{ general.dependency_manager }} run mutmut results
 {% endif %}
 {% if has_custom_docs %}
 .PHONY: docs-serve
