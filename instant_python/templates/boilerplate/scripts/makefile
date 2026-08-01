@@ -3,7 +3,7 @@
 {% set has_pre_commit_hooks = "precommit_hook" in template.built_in_features %}
 {% set has_github_actions_or_makefile = ["github_actions", "makefile"] | is_in(template.built_in_features) %}
 {% set has_agents = "ai_agents" in template.built_in_features %}
-{% set has_custom_docs = "custom_docs" in template.built_in_features %}
+{% set has_custom_docs = "custom_documentation" in template.built_in_features %}
 .DEFAULT_GOAL := help
 
 .PHONY: help
