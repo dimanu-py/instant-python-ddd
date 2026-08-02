@@ -11,7 +11,6 @@ Review the pending changes with attention to:
    - Do tests follow the project's testing style (naming, structure, speed, isolation)?
    - Are edge cases, failure paths, and boundaries tested?
    - Do tests help prevent regressions and clarify expected behavior?
-   - Do tests follow test desiderata?
 
 2. **Maintainability & Simplicity**
    - Is the code easy to understand at a glance?
@@ -21,7 +20,7 @@ Review the pending changes with attention to:
    - Does the change make the system easier or harder to evolve?
 
 3. **Project Rules & Conventions**
-   - Validate the changes against the project’s explicit rules defined in `docs/conventions` (coding standards, architectural guidelines, patterns, constraints).
+   - Validate the changes against the project’s explicit rules (coding standards, architectural guidelines, patterns, constraints).
    - Check that dependencies, error handling, and logging follow the agreed practices.
    - Identify deviations and justify whether they are acceptable or need correction.
 

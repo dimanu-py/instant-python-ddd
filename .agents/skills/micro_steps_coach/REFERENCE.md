@@ -139,8 +139,8 @@ def get_user_address(user_id):
 
 # Step 2: Update UI to display structured address (2h)
 # Now can display fields separately:
-# {{ address.street }}
-# {{ address.city }}, {{ address.state }} {{ address.zip }}
+{% raw %}# {{ address.street }}
+# {{ address.city }}, {{ address.state }} {{ address.zip }}{% endraw %}
 
 # Still dual-writing!
 ```

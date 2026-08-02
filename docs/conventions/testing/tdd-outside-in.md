@@ -65,23 +65,23 @@ class TestRegisterUsageEventRouter:
         ...
 ```
 
-### Scenario references in test names
+### Requirement references in test names
 
-Link every test back to its Gherkin scenario using an `@sN` tag in the docstring. This creates traceability between the `.feature` file and the test suite:
+Link every test back to its EARS requirement using an `R<n>` tag in the docstring. This creates traceability between the spec file and the test suite:
 
 ```python
 def test_valid_usage_event_returns_201_with_id_and_location(self, client: TestClient) -> None:
-    """@s1: Register a valid usage event with all fields."""
+    """R1: Register a valid usage event with all fields."""
     ...
 ```
 
 ```python
 def test_missing_required_field_returns_422(self, client: TestClient) -> None:
-    """@s2: Missing a required field returns 422."""
+    """R2: Missing a required field returns 422."""
     ...
 ```
 
-The `@sN` tags correspond to the scenario order in `docs/features/<feature>.feature`.
+The `R<n>` tags correspond to the requirement ids in `docs/specs/<feature>.md`.
 
 ### Testing the delivery layer
 
@@ -236,4 +236,4 @@ A delivery unit test that also asserts database queries. Slow, coupled, and dupl
 
 - `docs/conventions/architecture/architecture.md` — the code structure these tests exercise
 - `docs/conventions/testing/doublex-mocking.md` — doublex mocking patterns for repository ports
-- `docs/conventions/convention-guidelines.md` — document structure standard
+- `docs/agents/convention_guidelines.md` — document structure standard
