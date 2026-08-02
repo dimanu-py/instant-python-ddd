@@ -145,3 +145,4 @@ cython_debug/
 .opencode
 .claude
 CLAUDE.md
+docs/progress
