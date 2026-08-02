@@ -168,5 +168,5 @@ cython_debug/
 docs/progress
 .opencode
 .claude
-!docs/features/*.spec
+CLAUDE.md
 {% endif %}
