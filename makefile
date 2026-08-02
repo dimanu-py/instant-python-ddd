@@ -23,6 +23,12 @@ coverage:  ## Run all test with coverage.
 	@uv run coverage html
 	@$(BROWSER) htmlcov/index.html
 
+.PHONY: mutate
+mutate:  ## Run mutation testing (optional: MUTATE_PATH=instant_python/<module>/).
+	@echo "⌛ Running mutation testing...\n"
+	@uv run mutmut run $(or $(MUTATE_PATH),instant_python)
+	@uv run mutmut results
+
 .PHONY: install
 install:  ## Install dependencies.
 	@echo "\n⌛ Installing dependencies...\n"
