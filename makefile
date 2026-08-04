@@ -24,7 +24,7 @@ coverage:  ## Run all test with coverage.
 	@$(BROWSER) htmlcov/index.html
 
 .PHONY: mutate
-mutate:  ## Run mutation testing (optional: MUTATE_PATH=instant_python/<module>/).
+mutate:  ## Run mutation testing (optional: MUTATE_PATH="instant_python.<module>.*", dotted module pattern).
 	@echo "⌛ Running mutation testing...\n"
 	@uv run mutmut run $(or $(MUTATE_PATH),instant_python)
 	@uv run mutmut results
