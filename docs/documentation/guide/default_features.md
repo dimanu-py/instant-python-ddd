@@ -370,6 +370,10 @@ recurring workflows. When selected, it creates the following structure in your p
         └── xp_refactor
 ```
 
+The generated `AGENTS.md` includes a **repository knowledge map** that lists every documentation area — conventions,
+specs, progress logs, and agent guidelines — so agents know where to read and write information. Subagent prompts
+instruct agents to read this map first for orientation.
+
 #### Two Workflows
 
 This feature supports two usage modes. You can use one, both, or neither — they are independent.

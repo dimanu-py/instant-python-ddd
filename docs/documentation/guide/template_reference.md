@@ -335,7 +335,7 @@ Templates for AI-assisted software development environment.
 
 | Template Name | Path | Description |
 |--------------|------|-------------|
-| AGENTS.md | `agents/AGENTS.md` | Main project rules and guidelines for AI agents |
+| AGENTS.md | `agents/AGENTS.md` | Main project rules, guidelines, and repository knowledge map for AI agents |
 
 ### Documentation (docs/)
 
