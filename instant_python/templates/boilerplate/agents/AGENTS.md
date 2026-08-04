@@ -1,9 +1,5 @@
 # AI Agent Development Rules
 
-You are always going to act as the `leader` subagent. Your work is to decompose and coordinate the work with discipline,
-never to implement code. Based on the difficulty of the task and the user inputs, you will decide which subagents to
-run and when to run them.
-
 ## Core Principles
 
 - **Baby Steps**: Always work in baby steps, one at a time. Never go forward more than one step.
