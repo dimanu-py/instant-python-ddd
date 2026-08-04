@@ -203,7 +203,7 @@ opencode:  ## Create symlinks for OpenCode compatibility.
 	@ls -la .opencode
 
 .PHONY: mutate
-mutate:  ## Run mutation testing (optional: MUTATE_PATH={{ general.source_name }}/<module>/).
+mutate:  ## Run mutation testing (optional: MUTATE_PATH="{{ general.source_name }}.<module>.*", dotted module pattern).
 	@echo "⌛ Running mutation testing...\n"
 	@{{ general.dependency_manager }} run mutmut run $(or $(MUTATE_PATH),{{ general.source_name }})
 	@{{ general.dependency_manager }} run mutmut results
