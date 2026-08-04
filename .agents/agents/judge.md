@@ -36,7 +36,7 @@ You have two gates: **review** (coverage, TDD discipline, code quality) and **mu
 
 ## Protocol
 
-1. Read `docs/agents/convention_guidelines.md`, the spec file, and `docs/progress/tdd_<name>.md`.
+1. Read `docs/agents/convention_guidelines.md`, `docs/conventions/testing/common-test-variables-in-setup-method.md`, `docs/conventions/testing/assertion-helper-methods.md`, the spec file, and `docs/progress/tdd_<name>.md`.
 2. **Scenario coverage**: for each requirement in the spec file, locate at least one concrete test in `test/` that verifies it. If any scenario lacks coverage, reject.
 3. **TDD discipline**: review `docs/progress/tdd_<name>.md`. Is there evidence of Red-Green-Refactor cycles? Is there production code that no test demands (inflated scope)? If you see code without a justifying test, reject.
 4. **Quality (craftsman lens)** on every file touched:
@@ -50,7 +50,10 @@ You have two gates: **review** (coverage, TDD discipline, code quality) and **mu
 5. Run `make test`. Must be green.
 6. **If review passes**, run mutation testing:
    - Use the **mutation_testing** skill and `mutmut` as the mutation tool.
-   - The threshold is **100% on new/touched lines**. Use `make mutate MUTATE_PATH=instant_python/<feature>/` to run mutation testing. Review `make mutate` output and `mutmut show survived` for surviving mutants.
+   - The threshold is **100% on new/touched lines**. Scope the run to the feature with the dotted module pattern, never a filesystem path: `make mutate MUTATE_PATH="instant_python.<feature>.*"`. In mutmut 3.7 the positional arg filters mutant names, so a directory path like `instant_python/<feature>/` matches nothing and silently mutates the whole project.
+   - When the suite contains a pre-existing red test, mutmut aborts. Keep the run scoped and deterministic.
+   - `len()` calls are never mutated and decorated functions (e.g. `@property`) are skipped; do not demand mutants on those lines — compensate with behavioral tests that exercise the public output.
+   - Review `make mutate` output and `mutmut show <id>` for surviving mutants.
    - For each surviving mutant, document: file, line, mutation applied, and what test is missing to kill it.
 7. Emit verdict.
 
