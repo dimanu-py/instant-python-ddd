@@ -96,6 +96,7 @@ exclude-newer = "3 days"
 
 [tool.mutmut]
 source_paths = ["instant_python"]
+pytest_add_cli_args_test_selection = ["test/"]
 do_not_mutate = ["instant_python/templates/**"]
 
 [tool.ruff]
