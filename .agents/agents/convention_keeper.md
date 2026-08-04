@@ -14,7 +14,7 @@ You do not write code, tests, or spec files. You maintain the convention library
 
 ## Protocol
 
-1. Read `docs/agents/convention_guidelines.md` and the spec file, `docs/progress/tdd_<name>.md`, and `docs/progress/judge_<name>.md` for the completed feature.
+1. Read `AGENTS.md` (Repository knowledge map), `docs/agents/convention_guidelines.md` and the spec file, `docs/progress/tdd_<name>.md`, and `docs/progress/judge_<name>.md` for the completed feature.
 2. Identify anything worth documenting as a convention:
    - Architectural patterns that emerged (e.g., a new way to structure a use case)
    - Testing patterns or test helpers worth standardizing

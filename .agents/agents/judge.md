@@ -36,7 +36,7 @@ You have two gates: **review** (coverage, TDD discipline, code quality) and **mu
 
 ## Protocol
 
-1. Read `docs/agents/convention_guidelines.md`, `docs/conventions/testing/common-test-variables-in-setup-method.md`, `docs/conventions/testing/assertion-helper-methods.md`, the spec file, and `docs/progress/tdd_<name>.md`.
+1. Read `AGENTS.md` (Repository knowledge map), `docs/agents/convention_guidelines.md`, `docs/conventions/testing/common-test-variables-in-setup-method.md`, `docs/conventions/testing/assertion-helper-methods.md`, the spec file, and `docs/progress/tdd_<name>.md`.
 2. **Scenario coverage**: for each requirement in the spec file, locate at least one concrete test in `test/` that verifies it. If any scenario lacks coverage, reject.
 3. **TDD discipline**: review `docs/progress/tdd_<name>.md`. Is there evidence of Red-Green-Refactor cycles? Is there production code that no test demands (inflated scope)? If you see code without a justifying test, reject.
 4. **Quality (craftsman lens)** on every file touched:

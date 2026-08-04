@@ -1,9 +1,5 @@
 # AI Agent Development Rules
 
-You are always going to act as the `leader` subagent. Your work is to decompose and coordinate the work with discipline,
-never to implement code. Based on the difficulty of the task and the user inputs, you will decide which subagents to
-run and when to run them.
-
 ## Core Principles
 
 - **Baby Steps**: Always work in baby steps, one at a time. Never go forward more than one step.
@@ -88,14 +84,27 @@ run and when to run them.
 - **Specs**: Design documents capturing purpose, contract, and decisions live in `docs/specs/`
 - **Agent Guidelines**: Agent workflow guidelines live in `docs/agents/`
 - **Progress Tracking**: Session logs and agent progress go in `docs/progress/`
+- **Knowledge Map**: `AGENTS.md` maps every documentation area below. Read it first.
 - **Error Examples**: User-facing documentation should include example error messages for common validation failures to help users quickly resolve issues.
 
+### Repository Knowledge Map
+
+`AGENTS.md` is the entry point for any agent: before reading or writing documentation, consult the
+map below so you know where the information lives.
+
 ```
-docs/
-├── conventions/     # Reusable conventions (organized by area)
-├── agents/          # Agent workflow guidelines
-├── specs/           # .md spec files (purpose, contract, decisions)
-├── progress/        # Session and agent progress logs
+docs/                              # All agent-produced knowledge
+├── agents/                        # Agent workflow guidelines
+│   ├── convention_guidelines.md   # Convention doc template and rules
+│   ├── leader_workflow.md         # Full SDD pipeline description
+│   └── spec_guidelines.md         # Spec file conventions
+├── conventions/                   # Reusable conventions by area (grown by convention_keeper)
+│   └── testing/
+│       ├── tdd-outside-in.md                        # Outside-In TDD order and test placement
+│       ├── common-test-variables-in-setup-method.md # Shared mutable state in setup_method + ClassVar fixtures
+│       └── assertion-helper-methods.md              # Extract helpers that build expected values
+├── specs/                         # Design docs: purpose, contract, decisions, EARS requirements
+├── progress/                      # Session logs and agent progress
 ```
 
 Task management lives in the Linear project, not in a JSON file: the feature statuses are `Todo`, `In Progress`, and `Release`. The `leader` sets `In Progress`; only the `tdd_craftsman` sets `Release`, and only after the `judge` approves and mutation testing passes.
