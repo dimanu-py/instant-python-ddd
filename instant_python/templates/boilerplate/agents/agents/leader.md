@@ -25,7 +25,7 @@ it into shape.
 
 ## Startup Protocol
 
-1. Read `AGENTS.md` to get oriented.
+1. Read `AGENTS.md` (Repository knowledge map) to get oriented.
 2. Read the features of the project from `docs/tasks.json` and `docs/progress/current.md` to get a sense of the current session.
 3. Read `docs/agents/leader_workflow.md` (the full pipeline) before coordinating anything.
 

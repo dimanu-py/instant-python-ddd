@@ -45,7 +45,7 @@ REFACTOR  → clean up with the bar green: names, duplication, short functions
 
 ## Protocol
 
-1. Read `AGENTS.md`, `docs/agents/convention_guidelines.md`, `docs/conventions/testing/tdd_outside_in.md`, and the spec for the feature.
+1. Read `AGENTS.md` (Repository knowledge map), `docs/agents/convention_guidelines.md`, `docs/conventions/testing/tdd_outside_in.md`, and the spec for the feature.
 2. Record in `progress/current.md`: `Feature in progress: <name>` and the list of requirements `R1...R<n>` you will cover.
 3. Before starting the TDD cycle, check if the scenario requires a risky change (DB schema, API contract, service replacement). If so, use the **micro_steps_coach** skill to plan the expand-contract pattern first — then proceed with TDD.
 4. **For each requirement in order**, execute one or more Red-Green-Refactor cycles using Outside-In TDD:

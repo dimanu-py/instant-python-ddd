@@ -78,20 +78,33 @@
 ## Documentation Standards
 
 - **User-Focused README**: README.md must be user-focused, containing only information relevant to table authors and end users.
-- **Separate Dev Docs**: All technical documentation and conventions must be maintained in `docs/adrs/`
-- **Separate Design Docs**: All design decisions, feature specifications, and architectural discussions must be maintained in `docs/design_docs/`
+- **Separate Dev Docs**: All technical documentation and conventions must be maintained in `docs/conventions/`
+- **Separate Design Docs**: All design decisions, feature specifications, and architectural discussions must be maintained in `docs/specs/`
 - **Conventions**: Reusable patterns and practices captured by the convention_keeper agent go in `docs/conventions/`
 - **Specs**: Design documents capturing purpose, contract, and decisions live in `docs/specs/`
-- **Feature Files**: Executable Gherkin scenarios live in `docs/features/`
+- **Agent Guidelines**: Agent workflow guidelines live in `docs/agents/`
 - **Progress Tracking**: Session logs and agent progress go in `docs/progress/`
+- **Knowledge Map**: `AGENTS.md` maps every documentation area below. Read it first.
 - **Error Examples**: User-facing documentation should include example error messages for common validation failures to help users quickly resolve issues.
 
+### Repository Knowledge Map
+
+`AGENTS.md` is the entry point for any agent: before reading or writing documentation, consult the
+map below so you know where the information lives. The convention, spec, and progress areas grow
+over time as the `convention_keeper` captures learnings and features are designed and delivered.
+
 ```
-docs/
-├── conventions/     # Reusable conventions (organized by area)
-├── specs/           # .md spec files (purpose, contract, decisions)
-├── progress/        # Session and agent progress logs
-├── tasks.json       # Task management (status: pending, spec_ready, in_progress, done, blocked)
+docs/                              # All agent-produced knowledge
+├── agents/                        # Agent workflow guidelines
+│   ├── convention_guidelines.md   # Convention doc template and rules
+│   ├── leader_workflow.md         # Full pipeline description
+│   └── spec_guidelines.md         # Spec file conventions
+├── conventions/                   # Reusable conventions by area (grown by convention_keeper)
+│   └── testing/
+│       └── tdd_outside_in.md      # Outside-In TDD order and test placement
+├── specs/                         # Design docs: purpose, contract, decisions, EARS requirements
+├── progress/                      # Session logs and agent progress
+└── tasks.json                     # Task management (status: pending, spec_ready, in_progress, done, blocked)
 ```
 
 ## Tool usage

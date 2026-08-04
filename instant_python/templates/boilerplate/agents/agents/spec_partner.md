@@ -37,7 +37,7 @@ the human decide; record the decision and its rationale.
 
 ## Protocol
 
-1. Read `docs/agents/convention_guidelines.md`, `docs/agents/spec_guidelines.md`, the available skills,  
+1. Read `AGENTS.md` (Repository knowledge map), `docs/agents/convention_guidelines.md`, `docs/agents/spec_guidelines.md`, the available skills,  
 and any existing spec for the feature.
 2. **Debate** open points with the human. One question or block of options per 
 turn — do not fire an entire questionnaire at once.
