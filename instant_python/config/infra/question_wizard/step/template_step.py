@@ -11,6 +11,10 @@ class TemplateStep(Step):
         super().__init__(questionary)
         self._answers = {}
 
+    @property
+    def title(self) -> str:
+        return "Template"
+
     def run(self) -> dict[str, dict[str, str | list[str]]]:
         name = self._choose_template_name_from_options()
 

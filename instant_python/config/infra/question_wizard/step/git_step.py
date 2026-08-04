@@ -9,6 +9,10 @@ class GitStep(Step):
         super().__init__(questionary)
         self._answers = {}
 
+    @property
+    def title(self) -> str:
+        return "Git"
+
     def run(self) -> dict[str, dict[str, str | bool]]:
         if not self._user_wants_initialize_git_repository():
             return {self._KEY: self._answers}

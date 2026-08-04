@@ -12,6 +12,10 @@ class GeneralStep(Step):
         super().__init__(questionary)
         self._answers = {}
 
+    @property
+    def title(self) -> str:
+        return "General"
+
     def run(self) -> dict[str, dict[str, str]]:
         self._ask_project_slug()
         self._ask_source_folder_name()

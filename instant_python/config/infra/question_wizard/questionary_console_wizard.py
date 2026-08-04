@@ -18,8 +18,12 @@ class QuestionaryConsoleWizard(QuestionWizard):
         self._answers = {}
 
     def run(self) -> dict:
-        for step in self._steps:
+        for position, step in enumerate(self._steps, start=1):
+            self._show_section_heading(position, step.title)
             answer = step.run()
             self._answers.update(answer)
 
         return self._answers
+
+    def _show_section_heading(self, position: int, section_title: str) -> None:
+        print(f"[{position}/{len(self._steps)}] {section_title}")

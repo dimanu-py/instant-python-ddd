@@ -8,6 +8,11 @@ class Step(ABC):
     def __init__(self, questionary: Questionary) -> None:
         self._questionary = questionary
 
+    @property
+    @abstractmethod
+    def title(self) -> str:
+        raise NotImplementedError
+
     @abstractmethod
     def run(self) -> dict[str, dict]:
         raise NotImplementedError
@@ -19,3 +24,6 @@ class Steps:
 
     def __iter__(self) -> Iterator[Step]:
         return iter(self._steps)
+
+    def __len__(self) -> int:
+        return len(self._steps)

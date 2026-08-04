@@ -9,6 +9,10 @@ class DependenciesStep(Step):
         super().__init__(questionary)
         self._dependencies = []
 
+    @property
+    def title(self) -> str:
+        return "Dependencies"
+
     def run(self) -> dict[str, list[dict[str, str | bool]]]:
         while True:
             if not self._user_wants_to_install_dependencies():
