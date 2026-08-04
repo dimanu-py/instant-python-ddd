@@ -343,6 +343,7 @@ Templates for AI-assisted software development environment.
 |--------------|------|-------------|
 | Convention Guidelines | `agents/convention_guidelines.md` | Convention document structure standard |
 | Leader Workflow | `agents/leader_workflow.md` | Full development pipeline description |
+| Spec Guidelines | `agents/spec_guidelines.md` | Spec generation guidelines |
 | TDD Outside-In | `agents/tdd_outside_in.md` | Outside-In TDD convention and test structure |
 | Tasks JSON | `agents/tasks.json` | Task management file (status: pending, spec_ready, in_progress, done, blocked) |
 
@@ -351,33 +352,31 @@ Templates for AI-assisted software development environment.
 | Template Name | Path | Description |
 |--------------|------|-------------|
 | Convention Keeper | `agents/agents/convention_keeper.md` | Captures learnings into convention docs |
-| Craftsman Leader | `agents/agents/craftsman_leader.md` | Orchestrates the full development pipeline |
 | Judge | `agents/agents/judge.md` | Reviews code and runs mutation testing |
-| Spec Partner | `agents/agents/spec_partner.md` | Debates and distills specs into .spec and .feature files |
+| Leader | `agents/agents/leader.md` | Orchestrates the full development pipeline |
+| Spec Partner | `agents/agents/spec_partner.md` | Debates and distills specs into `docs/specs/<name>.md` with EARS requirements |
 | TDD Craftsman | `agents/agents/tdd_craftsman.md` | Implements features by Outside-In TDD |
 
 ### Commands
 
 | Template Name | Path | Description |
 |--------------|------|-------------|
-| Code Review | `agents/commands/code_review.md` | Review pending changes for quality and maintainability |
 | Commit | `agents/commands/commit.md` | Split changes into atomic conventional commits |
-| Security Review | `agents/commands/security_review.md` | Security analysis and risk assessment |
 | Technical Debt Review | `agents/commands/technical_debt_review.md` | Technical debt identification and prioritization |
 
 ### Skills
 
 | Skill                         | Path                                           | Description                                                |
 |-------------------------------|------------------------------------------------|------------------------------------------------------------|
+| Code Review                   | `agents/skills/code_review/SKILL.md`           | Review pending changes for quality and maintainability     |
+| Security Review               | `agents/skills/security_review/SKILL.md`       | Security analysis and risk assessment                      |
 | Complexity Review             | `agents/skills/complexity_review/SKILL.md`     | Evaluate technical proposals against complexity dimensions |
 | Complexity Review (Reference) | `agents/skills/complexity_review/REFERENCE.md` | Reference for complexity review dimensions                 |
-| Convention                    | `agents/skills/convention/SKILL.md`            | Create or update convention documentation                  |
 | Hamburger Method              | `agents/skills/hamburger_method/SKILL.md`      | Slice features into vertical deliverable pieces            |
 | Hamburger Method (Reference)  | `agents/skills/hamburger_method/REFERENCE.md`  | Reference for hamburger method patterns                    |
 | Micro Steps Coach             | `agents/skills/micro_steps_coach/SKILL.md`     | Break down work into 1-3 hour micro-steps                  |
 | Micro Steps Coach (Reference) | `agents/skills/micro_steps_coach/REFERENCE.md` | Reference for expand-contract patterns                     |
 | Mutation Testing              | `agents/skills/mutation_testing/SKILL.md`      | Apply mutation testing analysis in Python                  |
-| Spec                          | `agents/skills/spec/SKILL.md`                  | Create or update feature specifications                    |
 | Story Splitting               | `agents/skills/story_splitting/SKILL.md`       | Split large stories using proven heuristics                |
 | Story Splitting (Reference)   | `agents/skills/story_splitting/REFERENCE.md`   | Reference for story splitting patterns                     |
 | Test Desiderata               | `agents/skills/test_desiderata/SKILL.md`       | Analyze test quality using Test Desiderata framework       |
@@ -398,10 +397,6 @@ Templates for AI-assisted software development environment.
     - name: conventions
       type: directory
       children:
-        - name: convention_guidelines
-          type: file
-          extension: .md
-          template: agents/convention_guidelines.md
         - name: testing
           type: directory
           children:
@@ -409,15 +404,23 @@ Templates for AI-assisted software development environment.
               type: file
               extension: .md
               template: agents/tdd_outside_in.md
-        - name: workflow
-          type: directory
-          children:
-            - name: leader_workflow
-              type: file
-              extension: .md
-              template: agents/leader_workflow.md
-    - name: features
+    - name: specs
       type: directory
+    - name: agents
+      type: directory
+      children:
+        - name: spec_guidelines
+          type: file
+          extension: .md
+          template: agents/spec_guidelines.md
+        - name: convention_guidelines
+          type: file
+          extension: .md
+          template: agents/convention_guidelines.md
+        - name: leader_workflow
+          type: file
+          extension: .md
+          template: agents/leader_workflow.md
     - name: progress
       type: directory
     - name: tasks
@@ -431,10 +434,18 @@ Templates for AI-assisted software development environment.
     - name: agents
       type: directory
       children:
-        - name: craftsman_leader
+        - name: convention_keeper
+          type: file
+          extension: .md
+          template: agents/agents/convention_keeper.md
+        - name: leader
           type: file
           extension: .md
           template: agents/agents/leader.md
+        - name: judge
+          type: file
+          extension: .md
+          template: agents/agents/judge.md
         - name: spec_partner
           type: file
           extension: .md
@@ -443,14 +454,6 @@ Templates for AI-assisted software development environment.
           type: file
           extension: .md
           template: agents/agents/tdd_craftsman.md
-        - name: judge
-          type: file
-          extension: .md
-          template: agents/agents/judge.md
-        - name: convention_keeper
-          type: file
-          extension: .md
-          template: agents/agents/convention_keeper.md
     - name: commands
       type: directory
       children:
@@ -471,39 +474,32 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/code_review/spec_guidelines.md
+              template: agents/skills/code_review/SKILL.md
         - name: security_review
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/security_review/spec_guidelines.md
+              template: agents/skills/security_review/SKILL.md
         - name: complexity_review
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/complexity_review/spec_guidelines.md
+              template: agents/skills/complexity_review/SKILL.md
             - name: REFERENCE
               type: file
               extension: .md
               template: agents/skills/complexity_review/REFERENCE.md
-        - name: convention
-          type: directory
-          children:
-            - name: SKILL
-              type: file
-              extension: .md
-              template: agents/skills/convention/spec_guidelines.md
         - name: hamburger_method
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/hamburger_method/spec_guidelines.md
+              template: agents/skills/hamburger_method/SKILL.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -514,7 +510,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/micro_steps_coach/spec_guidelines.md
+              template: agents/skills/micro_steps_coach/SKILL.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -525,21 +521,14 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/mutation_testing/spec_guidelines.md
-        - name: spec
-          type: directory
-          children:
-            - name: SKILL
-              type: file
-              extension: .md
-              template: agents/skills/spec/spec_guidelines.md
+              template: agents/skills/mutation_testing/SKILL.md
         - name: story_splitting
           type: directory
           children:
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/story_splitting/spec_guidelines.md
+              template: agents/skills/story_splitting/SKILL.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -550,7 +539,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/test_desiderata/spec_guidelines.md
+              template: agents/skills/test_desiderata/SKILL.md
             - name: REFERENCE
               type: file
               extension: .md
@@ -561,7 +550,7 @@ Templates for AI-assisted software development environment.
             - name: SKILL
               type: file
               extension: .md
-              template: agents/skills/xp_refactor/spec_guidelines.md
+              template: agents/skills/xp_refactor/SKILL.md
 ```
 
 ---
