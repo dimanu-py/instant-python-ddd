@@ -102,7 +102,7 @@ docs/                              # All agent-produced knowledge
 │   └── testing/
 │       ├── tdd-outside-in.md                        # Outside-In TDD order and test placement
 │       ├── common-test-variables-in-setup-method.md # Shared mutable state in setup_method + ClassVar fixtures
-│       └── assertion-helper-methods.md              # Extract helpers that build expected values
+│       └── assertion-helper-methods.md              # Semantic helpers for setup and assertions
 ├── specs/                         # Design docs: purpose, contract, decisions, EARS requirements
 ├── progress/                      # Session logs and agent progress
 ```

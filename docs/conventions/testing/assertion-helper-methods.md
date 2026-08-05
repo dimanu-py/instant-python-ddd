@@ -1,53 +1,85 @@
-# Assertion helper methods
+# Semantic helper methods for setup and assertions
 
 ## Convention
 
-When an expected value is long or derived from several pieces of data, extract a purpose-revealing
-helper method that builds it, so the assertion stays a single readable line and the test documents
-the shape of the expected result.
+Extract test steps into purpose-revealing helper methods named after the behavior they set up or
+verify, so the test body reads as a story of what happens instead of a list of mechanics.
 
-```python
-def test_should_display_section_heading_before_its_questions(self) -> None:
-    ...
+There are two kinds of helpers:
 
-    expect(self._event_log).to(equal(self._expected_events_with_section_headings()))
+- **Setup helpers** arrange the world before the action: they set collaborator expectations,
+  prepare inputs, or configure state. Name them for the behavior being arranged (e.g.
+  `_should_charge_the_customer()` sets up the expectation that the payment goes through).
+- **Assertion helpers** build or check the expected outcome: they derive the expected value or
+  verify a result so the assertion stays a single readable line (e.g.
+  `_expected_receipt_lines()`).
 
-def _expected_events_with_section_headings(self) -> list[str]:
-    events: list[str] = []
-    for heading, questions in sections:
-        events.append(f"heading: {heading}")
-        events.extend(f"question: {question}" for question in questions)
-    return events
-```
+A test reads top to bottom: setup helpers, the action, then the assertion.
 
 ## Benefits
 
-- The assertion reads top to bottom: run the action, then compare against one named value.
-- The helper name explains what the expectation represents without a comment.
-- Building the expected value in one place keeps it consistent and reusable across tests.
-- Changes to the expected shape are made in one method, not scattered inline in each assertion.
+- The test reads top to bottom like a story: setup helpers, the action, then the assertion.
+- Helper names explain what is arranged or verified without a comment.
+- Repeated arrangements and expected values live in one method, not scattered inline in each test.
+- Changes to a behavior's setup or to the expected shape are made in one place.
+- A shared setup helper keeps its body in sync across every test that uses it.
 
 ## Examples
+
+### Good: semantic setup helpers
+
+```python
+def test_should_charge_the_customer_when_checkout_succeeds(self) -> None:
+    self._should_check_that_the_customer_has_balance()
+    self._should_charge_the_customer()
+
+    self._checkout.run(cart=self._cart)
+
+    expect(self._payment_gateway).to(have_been_satisfied)
+
+def _should_check_that_the_customer_has_balance(self) -> None:
+    expect_call(self._payment_gateway).has_balance(self._customer).returns(True)
+
+def _should_charge_the_customer(self) -> None:
+    expect_call(self._payment_gateway).charge(self._customer, self._cart.total).returns(self._receipt)
+```
+
+The helper names describe the world being arranged, so the test body reads as a story.
 
 ### Good: assertion against a helper-built expected value
 
 ```python
-def test_should_display_section_heading_before_its_questions(self) -> None:
-    fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
+def test_should_print_one_line_per_product_in_the_receipt(self) -> None:
+    ...
 
-    with patch("builtins.print", side_effect=record_heading):
-        QuestionaryConsoleWizard(questionary=fake_questionary).run()
+    expect(self._printed_lines).to(equal(self._expected_receipt_lines()))
 
-    expect(self._event_log).to(equal(self._expected_events_with_section_headings()))
+def _expected_receipt_lines(self) -> list[str]:
+    return [f"{product.name}: {product.price}" for product in self._cart.products]
 ```
+
+The expected value is derived in one place, so the assertion stays a single readable line.
+
+### Bad: mechanic-by-mechanic setup inlined in the test
+
+```python
+def test_should_charge_the_customer_when_checkout_succeeds(self) -> None:
+    expect_call(self._payment_gateway).has_balance(self._customer).returns(True)
+    expect_call(self._payment_gateway).charge(self._customer, self._cart.total).returns(self._receipt)
+
+    self._checkout.run(cart=self._cart)
+
+    expect(self._payment_gateway).to(have_been_satisfied)
+```
+
+The intent is buried under wiring, and every test that shares this setup must repeat it.
 
 ### Bad: long expected value inlined in the assertion
 
 ```python
-expect(self._event_log).to(equal([
-    "heading: [1/4] General",
-    "question: Enter the name of the project (CANNOT CONTAIN SPACES)",
-    "question: Enter the name of the source folder",
+expect(self._printed_lines).to(equal([
+    "apple: 1.20",
+    "banana: 0.80",
     ...
 ]))
 ```
@@ -56,6 +88,8 @@ The intent is buried under data, and the test must be re-read line by line to se
 
 ## Real world examples
 
+- `test/initialize/infra/env_manager/test_uv_env_manager.py` — `_should_*` setup helpers arrange
+  the console expectations so each test reads as a story
 - `test/config/infra/question_wizard/test_questionary_console_wizard.py` —
   `_expected_events_with_section_headings()` builds the full chronological event log that the
   assertion compares against
@@ -63,5 +97,5 @@ The intent is buried under data, and the test must be re-read line by line to se
 ## Related agreements
 
 - `docs/conventions/testing/common-test-variables-in-setup-method.md` — where the shared inputs for
-  these assertions come from
+  these helpers come from
 - `docs/conventions/testing/tdd-outside-in.md` — test structure and placement conventions
