@@ -13,6 +13,7 @@ no extra context to understand.
 - Place files in the correct area subfolder (`architecture/`, `testing/`, `database/`, etc -- these areas are examples).
 - Include concrete good and bad examples with code blocks when applicable.
 - Link to real files in the codebase that follow the convention in the "Real world examples" section.
+- Conventions capture general concepts and pattern decisions — in tests, code, architecture, workflow — never concrete cases tied to a specific feature, incident, or implementation detail (no feature names, no "during <issue>" stories, no narration of a particular implementation). Illustrate with generic examples; real-file links belong only in the "Real world examples" section as pointers.
 
 ## Benefits
 
