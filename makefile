@@ -61,7 +61,7 @@ check-lint:  ## Run ruff linting check.
 .PHONY: lint
 lint:  ## Apply ruff linting fix.
 	@echo "\n⌛ Applying linting fixes...\n"
-	@uvx ruff check --fix instant_python test
+	@uvx ruff check --fix --exit-non-zero-on-fix --output-format=grouped instant_python test
 
 .PHONY: check-format
 check-format:  ## Run ruff format check.

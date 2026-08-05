@@ -1,4 +1,4 @@
-fail_fast: true
+fail_fast: false
 
 default_language_version:
   python: python3.12
@@ -60,14 +60,14 @@ repos:
     hooks:
       - id: lint
         name: 🧹 Code Linter
-        entry: make check-lint
+        entry: make lint
         language: system
         stages:
           - pre-push
 
       - id: format
         name: 🎨 Code Formatter
-        entry: make check-format
+        entry: make format
         language: system
         stages:
           - pre-push
