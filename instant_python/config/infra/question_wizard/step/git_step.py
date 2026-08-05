@@ -24,13 +24,13 @@ class GitStep(Step):
 
     def _ask_git_email(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Type your git email",
+            message="What is your Git email?",
         )
         self._answers["email"] = answer
 
     def _ask_git_username(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Type your git user name",
+            message="What is your Git user name?",
         )
         self._answers["username"] = answer
 

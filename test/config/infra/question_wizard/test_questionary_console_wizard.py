@@ -29,19 +29,19 @@ class TestQuestionaryConsoleWizard:
     ]
 
     expected_question_messages: ClassVar[list[str]] = [
-        "Enter the name of the project (CANNOT CONTAIN SPACES)",
-        "Enter the name of the source folder",
-        "Enter the project description",
-        "Enter the project initial version",
-        "Enter your name",
-        "Select a license",
-        "Enter the python version",
-        "Select a dependency manager",
-        "Select a template",
-        "Select the built-in features you want to include",
+        "What is the project name?",
+        "What is the source folder name?",
+        "What is the project description?",
+        "What is the initial project version?",
+        "What is your name?",
+        "Which license do you want to use?",
+        "Which Python version do you want to use?",
+        "Which dependency manager do you want to use?",
+        "Which template do you want to use?",
+        "Which built-in features do you want to include?",
         "Do you want to initialize a git repository?",
-        "Type your git user name",
-        "Type your git email",
+        "What is your Git user name?",
+        "What is your Git email?",
         "Do you want to install dependencies?",
     ]
 
@@ -76,5 +76,5 @@ class TestQuestionaryConsoleWizard:
         ]
         for heading, questions in sections:
             events.append(f"heading: {heading}")
-            events.extend(f"question: {question}" for question in questions)
+            events.extend(questions)
         return events

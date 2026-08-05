@@ -30,55 +30,55 @@ class GeneralStep(Step):
 
     def _ask_project_slug(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Enter the name of the project (CANNOT CONTAIN SPACES)",
+            message="What is the project name?",
             default="python-project",
         )
         self._answers["slug"] = answer
 
     def _ask_source_folder_name(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Enter the name of the source folder",
+            message="What is the source folder name?",
             default="src",
         )
         self._answers["source_name"] = answer
 
     def _ask_project_description(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Enter the project description",
+            message="What is the project description?",
             default="Python Project Description",
         )
         self._answers["description"] = answer
 
     def _ask_project_version(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Enter the project initial version",
+            message="What is the initial project version?",
             default="0.1.0",
         )
         self._answers["version"] = answer
 
     def _ask_author_name(self) -> None:
         answer = self._questionary.free_text_question(
-            message="Enter your name",
+            message="What is your name?",
         )
         self._answers["author"] = answer
 
     def _ask_license(self) -> None:
         answer = self._questionary.single_choice_question(
-            message="Select a license",
+            message="Which license do you want to use?",
             options=SupportedLicenses.get_supported_licenses(),
         )
         self._answers["license"] = answer
 
     def _ask_python_version(self) -> None:
         answer = self._questionary.single_choice_question(
-            message="Enter the python version",
+            message="Which Python version do you want to use?",
             options=SupportedPythonVersions.get_supported_versions(),
         )
         self._answers["python_version"] = answer
 
     def _ask_dependency_manager(self) -> None:
         answer = self._questionary.single_choice_question(
-            message="Select a dependency manager",
+            message="Which dependency manager do you want to use?",
             options=SupportedManagers.get_supported_managers(),
             default=SupportedManagers.UV,
         )

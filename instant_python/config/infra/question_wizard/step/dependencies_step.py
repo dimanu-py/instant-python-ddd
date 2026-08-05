@@ -39,7 +39,7 @@ class DependenciesStep(Step):
 
     def _ask_dev_dependency_group_name(self) -> str:
         return self._questionary.free_text_question(
-            message="Specify the name of the group where to install the dependency (leave empty if not applicable)",
+            message="Which group should the dependency be installed in?",
             default="",
         )
 
@@ -51,13 +51,13 @@ class DependenciesStep(Step):
 
     def _ask_dependency_version(self) -> str:
         return self._questionary.free_text_question(
-            message="Enter the version of the dependency you want to install",
+            message="What is the version of the dependency?",
             default="latest",
         )
 
     def _ask_dependency_name(self) -> str:
         return self._questionary.free_text_question(
-            message="Enter the name of the dependency you want to install",
+            message="What is the name of the dependency?",
         )
 
     def _user_wants_to_install_dependencies(self) -> bool:
