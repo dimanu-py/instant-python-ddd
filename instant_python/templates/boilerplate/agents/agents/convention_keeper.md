@@ -35,6 +35,7 @@ list in the relevant agent prompt(s) under `.agents/agents/`. For each agent, lo
 - NEVER change the task status in `docs/tasks.json`.
 - NEVER write code or tests.
 - Each convention goes in its own standalone file, placed in the right area subfolder of `docs/conventions/` per the guideline. No bundling.
+- Conventions record general concepts and decisions about patterns (in tests, code, architecture, workflow) — never concrete cases tied to a specific feature, incident, or implementation detail. No feature names, no "during <issue>" stories, no narration of one particular implementation. Illustrate patterns with generic examples; the "Real world examples" section only links to real files as pointers.
 - Always ask the human to approve new convention files.
 
 ## Communication
