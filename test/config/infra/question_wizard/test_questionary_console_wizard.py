@@ -47,22 +47,23 @@ class TestQuestionaryConsoleWizard:
 
     def setup_method(self) -> None:
         self._event_log: list[str] = []
+        self._fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
 
     def test_should_ask_all_sections_in_order(self) -> None:
-        fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
+        console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary)
 
-        QuestionaryConsoleWizard(questionary=fake_questionary).run()
+        console_wizard.run()
 
         expect(self._event_log).to(equal([message for message in self.expected_question_messages]))
 
     def test_should_display_section_heading_before_its_questions(self) -> None:
-        fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
-
         def record_heading(*args: object) -> None:
             self._event_log.append("heading: " + " ".join(str(argument) for argument in args))
 
+        console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary)
+
         with patch("builtins.print", side_effect=record_heading):
-            QuestionaryConsoleWizard(questionary=fake_questionary).run()
+            console_wizard.run()
 
         expect(self._event_log).to(equal(self._expected_events_with_section_headings()))
 
