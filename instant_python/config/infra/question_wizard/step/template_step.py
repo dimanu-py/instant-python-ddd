@@ -35,12 +35,13 @@ class TemplateStep(Step):
         self._answers["name"] = answer
         return answer
 
-    def _user_wants_to_specify_bounded_context(self) -> None:
+    def _user_wants_to_specify_bounded_context(self) -> bool:
         answer = self._questionary.boolean_question(
             message="Do you want to specify your first bounded context?",
             default=True,
         )
         self._answers["specify_bounded_context"] = answer
+        return answer
 
     def _ask_bounded_context_name(self) -> str:
         answer = self._questionary.free_text_question(
