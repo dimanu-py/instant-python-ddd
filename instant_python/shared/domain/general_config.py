@@ -1,3 +1,4 @@
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from typing import ClassVar
@@ -20,36 +21,42 @@ class GeneralConfig:
     dependency_manager: str
     year: int = field(default=datetime.now(tz=timezone.utc).year)
 
-    _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = SupportedManagers.get_supported_managers()
-    _SUPPORTED_PYTHON_VERSIONS: ClassVar[list[str]] = SupportedPythonVersions.get_supported_versions()
-    _SUPPORTED_LICENSES: ClassVar[list[str]] = SupportedLicenses.get_supported_licenses()
-
     def __post_init__(self) -> None:
         self.version = str(self.version)
         self.python_version = str(self.python_version)
-        self._remove_white_spaces_from_slug_if_present()
+        self._remove_invalid_characters_from_slug_and_normalyze_hyphens()
         self._ensure_license_is_supported()
         self._ensure_python_version_is_supported()
         self._ensure_dependency_manager_is_supported()
 
-    def _remove_white_spaces_from_slug_if_present(self) -> None:
-        if " " in self.slug:
-            self.slug = self.slug.replace(" ", "")
+    def _remove_invalid_characters_from_slug_and_normalyze_hyphens(self) -> None:
+        normalized_slug = re.sub(r"[^a-z0-9]+", "-", self.slug.lower()).strip("-")
+        if not normalized_slug:
+            raise InvalidSlugValue(self.slug)
+        self.slug = normalized_slug
 
     def _ensure_license_is_supported(self) -> None:
-        if self.license not in self._SUPPORTED_LICENSES:
-            raise InvalidLicenseValue(self.license, self._SUPPORTED_LICENSES)
+        supported_licenses = SupportedLicenses.get_supported_licenses()
+        if self.license not in supported_licenses:
+            raise InvalidLicenseValue(self.license, supported_licenses)
 
     def _ensure_python_version_is_supported(self) -> None:
-        if self.python_version not in self._SUPPORTED_PYTHON_VERSIONS:
-            raise InvalidPythonVersionValue(self.python_version, self._SUPPORTED_PYTHON_VERSIONS)
+        supported_python_versions = SupportedPythonVersions.get_supported_versions()
+        if self.python_version not in supported_python_versions:
+            raise InvalidPythonVersionValue(self.python_version, supported_python_versions)
 
     def _ensure_dependency_manager_is_supported(self) -> None:
-        if self.dependency_manager not in self._SUPPORTED_DEPENDENCY_MANAGERS:
-            raise InvalidDependencyManagerValue(self.dependency_manager, self._SUPPORTED_DEPENDENCY_MANAGERS)
+        supported_dependency_managers = SupportedManagers.get_supported_managers()
+        if self.dependency_manager not in supported_dependency_managers:
+            raise InvalidDependencyManagerValue(self.dependency_manager, supported_dependency_managers)
 
     def to_primitives(self) -> dict[str, str]:
         return asdict(self)
+
+
+class InvalidSlugValue(ApplicationError):
+    def __init__(self, value: str) -> None:
+        super().__init__(message=f"Invalid slug: {value}. It must contain at least one letter or digit.")
 
 
 class InvalidDependencyManagerValue(ApplicationError):

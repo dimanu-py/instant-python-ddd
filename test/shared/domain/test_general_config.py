@@ -1,10 +1,11 @@
 import pytest
-from expects import expect, raise_error
+from expects import equal, expect, raise_error
 
 from instant_python.shared.domain.general_config import (
     InvalidDependencyManagerValue,
     InvalidLicenseValue,
     InvalidPythonVersionValue,
+    InvalidSlugValue,
 )
 from test.shared.domain.mothers.general_config_mother import (
     GeneralConfigMother,
@@ -37,3 +38,21 @@ class TestGeneralConfig:
     )
     def test_should_raise_error_for_unsupported_config_parameters(self, field, value, expected_error) -> None:
         expect(lambda: GeneralConfigMother.with_parameter(**{field: value})).to(raise_error(expected_error))
+
+    @pytest.mark.parametrize(
+        "raw_slug, expected_slug",
+        [
+            pytest.param("My Cool Project", "my-cool-project", id="spaces_and_uppercase"),
+            pytest.param("my_project", "my-project", id="underscores"),
+            pytest.param("my.project", "my-project", id="dots"),
+            pytest.param("My@Project#1", "my-project-1", id="invalid_characters"),
+            pytest.param("--my-project--", "my-project", id="surrounding_invalid_characters"),
+        ],
+    )
+    def test_should_normalize_slug_into_valid_distribution_name(self, raw_slug, expected_slug) -> None:
+        config = GeneralConfigMother.with_parameter(slug=raw_slug)
+
+        expect(config.slug).to(equal(expected_slug))
+
+    def test_should_raise_error_when_slug_has_no_valid_characters(self) -> None:
+        expect(lambda: GeneralConfigMother.with_parameter(slug="!!!")).to(raise_error(InvalidSlugValue))
