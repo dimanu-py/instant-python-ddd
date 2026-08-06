@@ -8,6 +8,7 @@ class DependenciesStep(Step):
     def __init__(self, questionary: Questionary) -> None:
         super().__init__(questionary)
         self._dependencies = []
+        self._is_first_dependency_prompt = True
 
     @property
     def title(self) -> str:
@@ -61,6 +62,12 @@ class DependenciesStep(Step):
         )
 
     def _user_wants_to_install_dependencies(self) -> bool:
+        message = (
+            "Do you want to add initial dependencies?"
+            if self._is_first_dependency_prompt
+            else "Do you want to add another dependency?"
+        )
+        self._is_first_dependency_prompt = False
         return self._questionary.boolean_question(
-            message="Do you want to add initial dependencies?",
+            message=message,
         )
