@@ -20,10 +20,7 @@ class DependenciesStep(Step):
             if not self._user_wants_to_install_dependencies():
                 break
 
-            name = self._ask_dependency_name()
-            if not name:
-                print("Dependency name cannot be empty. Let's try again.")
-                continue
+            name = self._ask_dependency_name_until_valid()
             version = self._ask_dependency_version()
             is_for_development = self._ask_if_dependency_is_for_development_purpose(name)
             group_name = self._ask_dev_dependency_group_name() if is_for_development else self._EMPTY_GROUP_NAME
@@ -57,10 +54,12 @@ class DependenciesStep(Step):
             default="latest",
         )
 
-    def _ask_dependency_name(self) -> str:
-        return self._questionary.free_text_question(
-            message="What is the name of the dependency?",
-        )
+    def _ask_dependency_name_until_valid(self) -> str:
+        while True:
+            dependency_name = self._questionary.free_text_question(message="What is the name of the dependency?")
+            if dependency_name:
+                return dependency_name
+            print("Dependency name cannot be empty. Let's try again.")
 
     def _user_wants_to_install_dependencies(self) -> bool:
         message = (
