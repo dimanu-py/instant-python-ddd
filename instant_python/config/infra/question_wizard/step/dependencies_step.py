@@ -4,6 +4,7 @@ from instant_python.config.infra.question_wizard.step.steps import Step
 
 class DependenciesStep(Step):
     _KEY = "dependencies"
+    _EMPTY_GROUP_NAME = ""
 
     def __init__(self, questionary: Questionary) -> None:
         super().__init__(questionary)
@@ -25,7 +26,7 @@ class DependenciesStep(Step):
                 continue
             version = self._ask_dependency_version()
             is_for_development = self._ask_if_dependency_is_for_development_purpose(name)
-            group_name = self._ask_dev_dependency_group_name() if is_for_development else ""
+            group_name = self._ask_dev_dependency_group_name() if is_for_development else self._EMPTY_GROUP_NAME
 
             self._dependencies.append(
                 {
