@@ -18,12 +18,14 @@ class TemplateStep(Step):
     def run(self) -> dict[str, dict[str, str | list[str]]]:
         name = self._choose_template_name_from_options()
 
+        if name == SupportedTemplates.CUSTOM:
+            return {self._KEY: self._answers}
+
         if name == SupportedTemplates.DDD and self._user_wants_to_specify_bounded_context():
             self._ask_bounded_context_name()
             self._ask_aggregate_name()
 
-        if name != SupportedTemplates.CUSTOM:
-            self._select_built_in_features()
+        self._select_built_in_features()
 
         return {self._KEY: self._answers}
 
