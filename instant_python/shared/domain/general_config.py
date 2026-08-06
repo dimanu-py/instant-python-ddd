@@ -1,7 +1,6 @@
 import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
-from typing import ClassVar
 
 from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.supported_licenses import SupportedLicenses
