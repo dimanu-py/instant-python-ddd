@@ -62,5 +62,5 @@ class DependenciesStep(Step):
 
     def _user_wants_to_install_dependencies(self) -> bool:
         return self._questionary.boolean_question(
-            message="Do you want to install dependencies?",
+            message="Do you want to add initial dependencies?",
         )

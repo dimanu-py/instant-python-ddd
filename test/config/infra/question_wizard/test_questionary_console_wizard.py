@@ -42,7 +42,7 @@ class TestQuestionaryConsoleWizard:
         "Do you want to initialize a git repository?",
         "What is your Git user name?",
         "What is your Git email?",
-        "Do you want to install dependencies?",
+        "Do you want to add initial dependencies?",
     ]
 
     def setup_method(self) -> None:
