@@ -2,6 +2,127 @@
 
 <!-- version list -->
 
+## v0.24.1 (2026-08-06)
+
+### 🪲 Bug Fixes
+
+- **config**: Correctly detect when user wants to specify the first bounded context when DDD
+  template is selected
+  ([`510010d`](https://github.com/dimanu-py/instant-python/commit/510010da4ea912eb9675d8771827d3b80bc6ff2c))
+
+- **templates**: Correct wrong reference to precommit hook built in feature in github ci workflow
+  ([`5ced652`](https://github.com/dimanu-py/instant-python/commit/5ced652e51021c0999cf1f810d6deec949ac4b87))
+
+- **templates**: Correct wrong reference to custom documenation built in feature
+  ([`63f019e`](https://github.com/dimanu-py/instant-python/commit/63f019e23a24d0737d01d3b1fb5f5fe406590624))
+
+- **shared**: Add timezone to default year variable in general config
+  ([`0ef8a1f`](https://github.com/dimanu-py/instant-python/commit/0ef8a1f2b2018247727275e30b06b52a931938e4))
+
+### ⚙️ Build System
+
+- Update uv.lock file
+  ([`07aa03b`](https://github.com/dimanu-py/instant-python/commit/07aa03b7d0653bc79c3068843f426cc01b027eeb))
+
+- Specify test path for mutation
+  ([`89a3cfc`](https://github.com/dimanu-py/instant-python/commit/89a3cfce2f9d7e8cdcc7e63a3f4e10b0c81fbffa))
+
+- Update dependencies in uv.lock file
+  ([`eb5858c`](https://github.com/dimanu-py/instant-python/commit/eb5858cb1c54b3bbcf796924c0e02cb385db3e32))
+
+- Add mutmut to test dependencies to run mutation tests on the project
+  ([`8a835cc`](https://github.com/dimanu-py/instant-python/commit/8a835cc73b6a4b78b3f3ff36b0abf8068555df9a))
+
+- Bump pymdown-extensions from 10.21.3 to 11.0
+  ([`584fb81`](https://github.com/dimanu-py/instant-python/commit/584fb8113143ad2a7eab08af04fc92500f2f3ea7))
+
+- Bump the production-minor-patch group across 1 directory with 4 updates
+  ([`ece841a`](https://github.com/dimanu-py/instant-python/commit/ece841a31a704e1faea35cabf1caa600b70c1308))
+
+- Bump the development-minor-patch group with 4 updates
+  ([`21567a6`](https://github.com/dimanu-py/instant-python/commit/21567a6fe4dc9769ea5baffc64d704d52893a080))
+
+- Bump the production-minor-patch group with 2 updates
+  ([`dbff7e6`](https://github.com/dimanu-py/instant-python/commit/dbff7e676f7b10fbcab9c3309390e2001261bd00))
+
+- Manually upgrage pydanctic-settings library due to vulnerability reported by audit job in ci
+  ([`b28318d`](https://github.com/dimanu-py/instant-python/commit/b28318d91e745afc6f99af67a4b525a49ef376d5))
+
+- Bump vcrpy from 8.1.1 to 8.2.1
+  ([`fc81715`](https://github.com/dimanu-py/instant-python/commit/fc81715efeed4bf7c7fa269ef5c84a4d0b799636))
+
+- Bump msgpack from 1.1.2 to 1.2.1
+  ([`d4a0c09`](https://github.com/dimanu-py/instant-python/commit/d4a0c09d36b30956b08bbc17c6655e42aaa687a7))
+
+- Bump the development-minor-patch group with 4 updates
+  ([`9661de9`](https://github.com/dimanu-py/instant-python/commit/9661de9eeae160f10293a83c4e9849c7425d1d90))
+
+- Bump the production-minor-patch group with 2 updates
+  ([`05a0fc9`](https://github.com/dimanu-py/instant-python/commit/05a0fc9fe4402e104ac26a8a5e394330d4a0bf93))
+
+- Bump the development-minor-patch group with 2 updates
+  ([`fc52a31`](https://github.com/dimanu-py/instant-python/commit/fc52a3128ee4df0b7b814af5c84670ca7910c7e5))
+
+- Bump the production-minor-patch group with 2 updates
+  ([`1fa0495`](https://github.com/dimanu-py/instant-python/commit/1fa049545803dc8a6b882e875d816a8300e92fd9))
+
+### ♻️ Refactoring
+
+- **config**: Apply early return when user selects custom template
+  ([`5127195`](https://github.com/dimanu-py/instant-python/commit/51271957ceebc577b8683ac10dec6939fac2ea4c))
+
+- **config**: Rename inner method in git step question wizard to detect if user wants to create the
+  project in a git repository
+  ([`684080c`](https://github.com/dimanu-py/instant-python/commit/684080c8663f47639a652abbc233fde6715b83e7))
+
+- **config**: Remove all invalid characters from slug in general config and normalize invalid
+  characters to hyphens
+  ([`8892c58`](https://github.com/dimanu-py/instant-python/commit/8892c585a6c99e6ac66bdbca3d98a0b4fbfa4618))
+
+- **config**: Improve question prompting for the different steps in the wizard
+  ([`7120665`](https://github.com/dimanu-py/instant-python/commit/712066576ac065f0f25df1f3747dda8fed389635))
+
+- **templates**: Update convention_keeper template to improve how it detects and writes conventions
+  to avoid them to be feature specific
+  ([`c375429`](https://github.com/dimanu-py/instant-python/commit/c375429aee599650518884a59728f70c55192c23))
+
+- **config**: Show the user some progress when answering the questions and let them know the
+  sections they are answering to
+  ([`9f8b44c`](https://github.com/dimanu-py/instant-python/commit/9f8b44cab3efe7b9457db34fff89ae23d9423131))
+
+- **templates**: Update agents main file to keep track of conventions in the file to avoid putting
+  in the different subagents which conventions it should read
+  ([`76f500f`](https://github.com/dimanu-py/instant-python/commit/76f500f35648121551d43cd5c3d6d90f024dfbb4))
+
+- **templates**: Update help comment in mutate make target template
+  ([`9e156a0`](https://github.com/dimanu-py/instant-python/commit/9e156a05958d243b7c3eb4350d95c511608f279c))
+
+- **templates**: Update instruction for running mutation testing in judge subagent template
+  ([`ff6ec09`](https://github.com/dimanu-py/instant-python/commit/ff6ec09fc7a22feae33c74e1bb3d7f95394150e4))
+
+- **templates**: Remove setting the leader subagent to be the default when starting a conversation
+  so subagents workflow has to be triggered manually
+  ([`4925e62`](https://github.com/dimanu-py/instant-python/commit/4925e62454942d36477f9d15e6c12bbd6f96cd51))
+
+- **templates**: Ignore CLAUDE.md file when ai agents built in feature is selected
+  ([`3d0698d`](https://github.com/dimanu-py/instant-python/commit/3d0698d0295983ef07cb93e5f56f5a96e65a0b36))
+
+- **templates**: Remove conditional in precommit hook template file to always include local hooks
+  that use makefile
+  ([`576d9ce`](https://github.com/dimanu-py/instant-python/commit/576d9ce56eaf0abda0428cfd0bedd6b75a007a2c))
+
+- **templates**: Modify subagents specifications, turn some commands into skills and add mutation
+  target in makefile template
+  ([`1da35f9`](https://github.com/dimanu-py/instant-python/commit/1da35f9552ebe58accb60973d12f32f79db6cd64))
+
+- **templates**: Rename craftsman leader subagent to just leader
+  ([`c3067d1`](https://github.com/dimanu-py/instant-python/commit/c3067d1bd046cbd2f94abf8ad38d970e25a5847c))
+
+- Fix all linting errors due to class vars not being typed, exceptions handle too broadly or imports
+  not being organized
+  ([`c22a212`](https://github.com/dimanu-py/instant-python/commit/c22a212349c58c239991aac087b145262a24c9b0))
+
+
 ## v0.24.0 (2026-06-10)
 
 ### ✨ Features
