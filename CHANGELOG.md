@@ -2,6 +2,27 @@
 
 <!-- version list -->
 
+## v0.24.2 (2026-08-07)
+
+### 🪲 Bug Fixes
+
+- **config**: Ask for dependency name again if user enters an empty string instead of reseting the
+  dependency question process
+  ([`8984c3e`](https://github.com/dimanu-py/instant-python/commit/8984c3eb639287393ef32d781d22de14ba52aa54))
+
+### ♻️ Refactoring
+
+- **config**: Extract semantic variable to remove magic string to represent empty group
+  ([`3e1a0e4`](https://github.com/dimanu-py/instant-python/commit/3e1a0e49f1c7da00921951df25eac973b3c4eca4))
+
+- **config**: Modify the message to ask whether to add a dependency or not depending on initial
+  answer
+  ([`4717cad`](https://github.com/dimanu-py/instant-python/commit/4717cad914d00b406759973db694c4296d7beed7))
+
+- **config**: Ask the user if they want to add initial dependencies when it's the first time
+  ([`5149deb`](https://github.com/dimanu-py/instant-python/commit/5149deb359e2c7ae856078cd7a55d1f9216049e1))
+
+
 ## v0.24.1 (2026-08-06)
 
 ### 🪲 Bug Fixes
