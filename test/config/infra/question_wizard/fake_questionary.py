@@ -1,5 +1,7 @@
 from collections import deque
 
+from expects import be_empty, expect
+
 from instant_python.config.infra.question_wizard.step.questionary import Questionary
 
 
@@ -27,3 +29,6 @@ class FakeQuestionary(Questionary):
 
     def _next_answer(self) -> object:
         return self._answers.popleft()
+
+    def should_have_consumed_all_answers(self) -> None:
+        expect(self._answers).to(be_empty)
