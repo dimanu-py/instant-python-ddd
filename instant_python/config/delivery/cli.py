@@ -11,9 +11,7 @@ app = typer.Typer()
 @app.command("config", help="Generate the configuration file for a new project")
 def generate_ipy_configuration_file() -> None:
     config_generator = ConfigGenerator(
-        question_wizard=QuestionaryConsoleWizard(
-            questionary=Questionary(),
-        ),
+        question_wizard=QuestionaryConsoleWizard(questionary=Questionary()),
         repository=YamlConfigRepository(),
     )
     config_generator.execute()

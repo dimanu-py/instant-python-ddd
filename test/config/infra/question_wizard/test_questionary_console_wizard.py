@@ -1,9 +1,14 @@
 from typing import ClassVar
 
 import pytest
+from doublex import Spy
+from doublex_expects import have_been_called
 from expects import equal, expect
 
-from instant_python.config.infra.question_wizard.questionary_console_wizard import QuestionaryConsoleWizard
+from instant_python.config.domain.answers_review_formatter import AnswersReviewFormatter
+from instant_python.config.infra.question_wizard.questionary_console_wizard import (
+    QuestionaryConsoleWizard,
+)
 from instant_python.shared.supported_templates import SupportedTemplates
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
@@ -69,4 +74,12 @@ class TestQuestionaryConsoleWizard:
         printed_headers = capsys.readouterr().out
         expect(printed_headers.splitlines()).to(equal(expected_headers))
 
+    def test_should_show_answers_summary(self, capsys: pytest.CaptureFixture[str]) -> None:
+        answers_formatter = Spy(AnswersReviewFormatter)
+        console_wizard = QuestionaryConsoleWizard(
+            questionary=self._fake_questionary, review_formatter=answers_formatter
+        )
 
+        console_wizard.run()
+
+        expect(answers_formatter.print_answers).to(have_been_called)
