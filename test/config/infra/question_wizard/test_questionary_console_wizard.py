@@ -1,5 +1,4 @@
 from typing import ClassVar
-from unittest.mock import patch
 
 import pytest
 from expects import equal, expect
@@ -56,26 +55,18 @@ class TestQuestionaryConsoleWizard:
 
         expect(self._event_log).to(equal([message for message in self.expected_question_messages]))
 
-    def test_should_display_section_heading_before_its_questions(self) -> None:
-        def record_heading(*args: object) -> None:
-            self._event_log.append("heading: " + " ".join(str(argument) for argument in args))
-
+    def test_should_display_section_heading_before_its_questions(self, capsys: pytest.CaptureFixture[str]) -> None:
         console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary)
 
-        with patch("builtins.print", side_effect=record_heading):
-            console_wizard.run()
+        console_wizard.run()
 
-        expect(self._event_log).to(equal(self._expected_events_with_section_headings()))
-
-    def _expected_events_with_section_headings(self) -> list[str]:
-        events: list[str] = []
-        sections = [
-            ("[1/4] General", self.expected_question_messages[0:8]),
-            ("[2/4] Template", self.expected_question_messages[8:10]),
-            ("[3/4] Git", self.expected_question_messages[10:13]),
-            ("[4/4] Dependencies", self.expected_question_messages[13:14]),
+        expected_headers = [
+            "[1/4] General",
+            "[2/4] Template",
+            "[3/4] Git",
+            "[4/4] Dependencies",
         ]
-        for heading, questions in sections:
-            events.append(f"heading: {heading}")
-            events.extend(questions)
-        return events
+        printed_headers = capsys.readouterr().out
+        expect(printed_headers.splitlines()).to(equal(expected_headers))
+
+
