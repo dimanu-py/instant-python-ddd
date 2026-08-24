@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 import pytest
 from expects import equal, expect
 
@@ -5,6 +7,17 @@ from instant_python.config.infra.question_wizard.console_answers_review_formatte
 
 
 class TestConsoleAnswerReviewFormatter:
+    _GENERAL_ANSWERS: ClassVar[dict[str, str]] = {
+        "slug": "example-project",
+        "source_name": "src",
+        "description": "Example project description",
+        "version": "0.1.0",
+        "author": "Jane Doe",
+        "license": "MIT",
+        "python_version": "3.13",
+        "dependency_manager": "uv",
+    }
+
     def setup_method(self) -> None:
         self._formatter = ConsoleAnswersReviewFormatter()
 
@@ -14,7 +27,23 @@ class TestConsoleAnswerReviewFormatter:
         printed_summary = capsys.readouterr().out
         expect(printed_summary).to(equal("Review Configuration\n"))
 
-    def test_should_show_general_summary(self) -> None: ...
+    def test_should_show_general_summary(self, capsys: pytest.CaptureFixture[str]) -> None:
+        self._formatter.print_answers({"general": self._GENERAL_ANSWERS})
+
+        printed_summary = capsys.readouterr().out
+        expected_summary = (
+            "Review Configuration\n"
+            "General\n"
+            "  Slug: example-project\n"
+            "  Source Name: src\n"
+            "  Description: Example project description\n"
+            "  Version: 0.1.0\n"
+            "  Author: Jane Doe\n"
+            "  License: MIT\n"
+            "  Python Version: 3.13\n"
+            "  Dependency Manager: uv\n"
+        )
+        expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_template_summary_without_built_in_features(self) -> None: ...
 
