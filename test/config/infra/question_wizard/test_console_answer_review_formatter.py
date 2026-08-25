@@ -32,6 +32,14 @@ class TestConsoleAnswerReviewFormatter:
         "aggregate_name": "user",
         "built_in_features": [],
     }
+    _GIT_NOT_INITIALIZED: ClassVar[dict[str, bool]] = {
+        "initialize": False,
+    }
+    _GIT_INITIALIZED: ClassVar[dict[str, bool | str]] = {
+        "initialize": True,
+        "username": "johndoe",
+        "email": "johndoe@gmail.com",
+    }
 
     def setup_method(self) -> None:
         self._formatter = ConsoleAnswersReviewFormatter()
@@ -99,9 +107,29 @@ class TestConsoleAnswerReviewFormatter:
         )
         expect(printed_summary).to(equal(expected_summary))
 
-    def test_should_show_git_summary_not_initialized(self) -> None: ...
+    def test_should_show_git_summary_not_initialized(self, capsys: pytest.CaptureFixture[str]) -> None:
+        self._formatter.print_answers({"git": self._GIT_NOT_INITIALIZED})
+        
+        printed_summary = capsys.readouterr().out
+        expected_summary = (
+            "Review Configuration\n"
+            "Git\n"
+            "  Initialize: False\n"
+        )
+        expect(printed_summary).to(equal(expected_summary))
 
-    def test_should_show_git_summary_initialized_with_username_and_email(self) -> None: ...
+    def test_should_show_git_summary_initialized_with_username_and_email(self, capsys: pytest.CaptureFixture[str]) -> None:
+        self._formatter.print_answers({"git": self._GIT_INITIALIZED})
+
+        printed_summary = capsys.readouterr().out
+        expected_summary = (
+            "Review Configuration\n"
+            "Git\n"
+            "  Initialize: True\n"
+            "  Username: johndoe\n"
+            "  Email: johndoe@gmail.com\n"
+        )
+        expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_empty_dependencies_summary(self) -> None: ...
 

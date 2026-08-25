@@ -8,6 +8,7 @@ class ConsoleAnswersReviewFormatter(AnswersReviewFormatter):
     _SECTION_TITLES: ClassVar[dict[str, str]] = {
         "general": "General",
         "template": "Template",
+        "git": "Git",
     }
 
     @override
