@@ -18,9 +18,7 @@ class ConsoleAnswersReviewFormatter(AnswersReviewFormatter):
                 section_title = self._SECTION_TITLES[section_key]
                 summary.append(section_title)
                 for field_title, field_content in section_content.items():
-                    if not field_content:
-                        field_content = "None"
                     if isinstance(field_content, list):
-                        field_content = ", ".join(field_content)
+                        field_content = "None" if not field_content else ", ".join(field_content)
                     summary.append(f"  {field_title.title().replace('_', ' ')}: {field_content}")
         print("\n".join(summary))
