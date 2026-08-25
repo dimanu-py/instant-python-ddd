@@ -25,6 +25,13 @@ class TestConsoleAnswerReviewFormatter:
         "name": "standard_project",
         "built_in_features": ["value_objects", "github_actions"],
     }
+    _TEMPLATE_WITH_BOUNDED_CONTEXT: ClassVar[dict[str, str | bool | list]] = {
+        "name": "domain_driven_design",
+        "specify_bounded_context": True,
+        "bounded_context": "backoffice",
+        "aggregate_name": "user",
+        "built_in_features": [],
+    }
 
     def setup_method(self) -> None:
         self._formatter = ConsoleAnswersReviewFormatter()
@@ -77,7 +84,20 @@ class TestConsoleAnswerReviewFormatter:
         )
         expect(printed_summary).to(equal(expected_summary))
 
-    def test_should_show_template_summary_with_bounded_context(self) -> None: ...
+    def test_should_show_template_summary_with_bounded_context(self, capsys: pytest.CaptureFixture[str]) -> None:
+        self._formatter.print_answers({"template": self._TEMPLATE_WITH_BOUNDED_CONTEXT})
+
+        printed_summary = capsys.readouterr().out
+        expected_summary = (
+            "Review Configuration\n"
+            "Template\n"
+            "  Name: domain_driven_design\n"
+            "  Specify Bounded Context: True\n"
+            "  Bounded Context: backoffice\n"
+            "  Aggregate Name: user\n"
+            "  Built In Features: None\n"
+        )
+        expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_git_summary_not_initialized(self) -> None: ...
 
