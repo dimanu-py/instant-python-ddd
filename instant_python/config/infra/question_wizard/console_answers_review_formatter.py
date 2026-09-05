@@ -15,15 +15,14 @@ class ConsoleAnswersReviewFormatter(AnswersReviewFormatter):
     @override
     def print_answers(self, answers: dict) -> None:
         summary = [self._TITLE]
-        if answers:
-            for section_key, section_content in answers.items():
-                section_title = self._SECTION_TITLES[section_key]
-                summary.append(section_title)
-                if not section_content:
-                    summary.append("  None")
-                    continue
-                for field_title, field_content in section_content.items():
-                    if isinstance(field_content, list):
-                        field_content = "None" if not field_content else ", ".join(field_content)
-                    summary.append(f"  {field_title.title().replace('_', ' ')}: {field_content}")
+        for section_key, section_content in answers.items():
+            section_title = self._SECTION_TITLES[section_key]
+            summary.append(section_title)
+            if not section_content:
+                summary.append("  None")
+                continue
+            for field_title, field_content in section_content.items():
+                if isinstance(field_content, list):
+                    field_content = "None" if not field_content else ", ".join(field_content)
+                summary.append(f"  {field_title.title().replace('_', ' ')}: {field_content}")
         print("\n".join(summary))
