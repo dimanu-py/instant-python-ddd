@@ -17,11 +17,11 @@ class TestConsoleAnswerReviewFormatter:
         "python_version": "3.13",
         "dependency_manager": "uv",
     }
-    _TEMPLATE_WITHOUT_BUILDING_FEATURES: ClassVar[dict[str, str | list]] = {
+    _TEMPLATE_WITHOUT_BUILT_IN_FEATURES: ClassVar[dict[str, str | list]] = {
         "name": "standard_project",
         "built_in_features": [],
     }
-    _TEMPLATE_WITH_BUILDING_FEATURES: ClassVar[dict[str, str | list]] = {
+    _TEMPLATE_WITH_BUILT_IN_FEATURES: ClassVar[dict[str, str | list]] = {
         "name": "standard_project",
         "built_in_features": ["value_objects", "github_actions"],
     }
@@ -69,7 +69,7 @@ class TestConsoleAnswerReviewFormatter:
         expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_template_summary_without_built_in_features(self, capsys: pytest.CaptureFixture[str]) -> None:
-        self._formatter.print_answers({"template": self._TEMPLATE_WITHOUT_BUILDING_FEATURES})
+        self._formatter.print_answers({"template": self._TEMPLATE_WITHOUT_BUILT_IN_FEATURES})
 
         printed_summary = capsys.readouterr().out
         expected_summary = (
@@ -81,7 +81,7 @@ class TestConsoleAnswerReviewFormatter:
         expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_template_summary_with_built_in_features(self, capsys: pytest.CaptureFixture[str]) -> None:
-        self._formatter.print_answers({"template": self._TEMPLATE_WITH_BUILDING_FEATURES})
+        self._formatter.print_answers({"template": self._TEMPLATE_WITH_BUILT_IN_FEATURES})
 
         printed_summary = capsys.readouterr().out
         expected_summary = (
