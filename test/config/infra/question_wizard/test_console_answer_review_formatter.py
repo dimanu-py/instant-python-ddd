@@ -131,6 +131,15 @@ class TestConsoleAnswerReviewFormatter:
         )
         expect(printed_summary).to(equal(expected_summary))
 
-    def test_should_show_empty_dependencies_summary(self) -> None: ...
+    def test_should_show_empty_dependencies_summary(self, capsys: pytest.CaptureFixture[str]) -> None:
+        self._formatter.print_answers({"dependencies": []})
+
+        printed_summary = capsys.readouterr().out
+        expected_summary = (
+            "Review Configuration\n"
+            "Dependencies\n"
+            "  None\n"
+        )
+        expect(printed_summary).to(equal(expected_summary))
 
     def test_should_show_dependencies_summary_with_version_format(self) -> None: ...
