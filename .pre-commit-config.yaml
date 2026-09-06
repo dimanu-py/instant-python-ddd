@@ -62,6 +62,7 @@ repos:
         name: 🧹 Code Linter
         entry: task lint
         language: system
+        pass_filenames: false
         stages:
           - pre-push
 
@@ -69,5 +70,6 @@ repos:
         name: 🎨 Code Formatter
         entry: task format
         language: system
+        pass_filenames: false
         stages:
           - pre-push
