@@ -23,12 +23,12 @@ class GeneralConfig:
     def __post_init__(self) -> None:
         self.version = str(self.version)
         self.python_version = str(self.python_version)
-        self._remove_invalid_characters_from_slug_and_normalyze_hyphens()
+        self._remove_invalid_characters_from_slug_and_normalize_hyphens()
         self._ensure_license_is_supported()
         self._ensure_python_version_is_supported()
         self._ensure_dependency_manager_is_supported()
 
-    def _remove_invalid_characters_from_slug_and_normalyze_hyphens(self) -> None:
+    def _remove_invalid_characters_from_slug_and_normalize_hyphens(self) -> None:
         normalized_slug = re.sub(r"[^a-z0-9]+", "-", self.slug.lower()).strip("-")
         if not normalized_slug:
             raise InvalidSlugValue(self.slug)
