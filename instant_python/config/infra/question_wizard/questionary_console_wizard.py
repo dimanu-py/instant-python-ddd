@@ -10,7 +10,7 @@ from instant_python.shared.domain.config_schema import ConfigSchema
 
 
 class QuestionaryConsoleWizard(QuestionWizard):
-    def __init__(self, questionary: Questionary, review_formatter: AnswersReviewFormatter | None = None) -> None:
+    def __init__(self, questionary: Questionary, review_formatter: AnswersReviewFormatter) -> None:
         self._steps = Steps(
             GeneralStep(questionary=questionary),
             TemplateStep(questionary=questionary),
@@ -33,5 +33,4 @@ class QuestionaryConsoleWizard(QuestionWizard):
         print(f"[{position}/{len(self._steps)}] {section_title}")
 
     def _show_answers_summary(self) -> None:
-        if self._review_formatter:
-            self._review_formatter.print_answers(self._answers)
+        self._review_formatter.print_answers(self._answers)

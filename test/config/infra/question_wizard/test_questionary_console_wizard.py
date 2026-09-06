@@ -51,19 +51,17 @@ class TestQuestionaryConsoleWizard:
 
     def setup_method(self) -> None:
         self._event_log: list[str] = []
+        self._answers_formatter = Spy(AnswersReviewFormatter)
         self._fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
+        self._console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary, review_formatter=self._answers_formatter)
 
     def test_should_ask_all_sections_in_order(self) -> None:
-        console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary)
-
-        console_wizard.run()
+        self._console_wizard.run()
 
         expect(self._event_log).to(equal([message for message in self.expected_question_messages]))
 
     def test_should_display_section_heading_before_its_questions(self, capsys: pytest.CaptureFixture[str]) -> None:
-        console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary)
-
-        console_wizard.run()
+        self._console_wizard.run()
 
         expected_headers = [
             "[1/4] General",
@@ -75,11 +73,6 @@ class TestQuestionaryConsoleWizard:
         expect(printed_headers.splitlines()).to(equal(expected_headers))
 
     def test_should_show_answers_summary(self, capsys: pytest.CaptureFixture[str]) -> None:
-        answers_formatter = Spy(AnswersReviewFormatter)
-        console_wizard = QuestionaryConsoleWizard(
-            questionary=self._fake_questionary, review_formatter=answers_formatter
-        )
+        self._console_wizard.run()
 
-        console_wizard.run()
-
-        expect(answers_formatter.print_answers).to(have_been_called)
+        expect(self._answers_formatter.print_answers).to(have_been_called)
