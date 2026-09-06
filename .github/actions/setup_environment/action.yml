@@ -1,0 +1,26 @@
+name: Setup development environment
+
+inputs:
+  python-version:
+    description: 'Additional Python versions to install for multi-version testing (e.g. the tox matrix). Leave empty to use only the version pinned in mise.toml.'
+    required: false
+    default: ""
+outputs: {}
+runs:
+  using: composite
+  steps:
+    - name: 🧰 Setup mise
+      uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+      with:
+        install: true
+        cache: true
+
+    - name: 🐍 Setup additional Python versions
+      if: inputs.python-version != ''
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: 📦 Install dependencies
+      run: task install
+      shell: bash

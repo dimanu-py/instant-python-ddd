@@ -68,10 +68,10 @@ jobs:
           ref: refs/tags/${{ needs.release.outputs.tag }}
 
       - name: 🛠️ Setup environment
-        uses: ./.github/actions/python_setup
+        uses: ./.github/actions/setup_environment
 
       - name: 🏃 Build package
-        run: uv build
+        run: task build
 
       - name: 🚀 Publish
         uses: pypa/gh-action-pypi-publish@release/v1
