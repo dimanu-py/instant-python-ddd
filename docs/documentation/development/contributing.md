@@ -12,7 +12,7 @@ your help makes the library better for everyone.
 ## Start Contributing
 
 !!! info
-    All examples assume you are using a UNIX system with `GNU Make` installed. For more information about the Makefile, see the [Tooling](#tooling) section.
+    All examples assume you have [`mise`](https://mise.jdx.dev) installed, which provisions `task` and the rest of the toolchain. For more information about the Taskfile, see the [Tooling](#tooling) section.
 
 ### Common Steps
 
@@ -29,7 +29,7 @@ All contributions have some common steps, whether you're fixing a bug, adding a 
 3. **Setup the Development Environment**: Create a virtual environment, install all dependencies, and setup custom pre-commit hooks.
 
     ```bash
-    make local-setup
+    task local-setup
     ```
 
 4. **Create a Feature Branch**: Create a feature branch from the `main` branch.
@@ -47,9 +47,9 @@ If you want to implement a new feature, fix a bug, or improve the codebase, it's
 2. **Quality Checks**: Run the following commands to ensure your code is formatted, linted, and passes the test suite.
 
     ```bash
-    make format
-    make lint
-    make test
+    task format
+    task lint
+    task test
     ```
 
 3. **Commit Your Changes**: Commit your changes with a descriptive commit message.
@@ -79,7 +79,7 @@ If you want to contribute to the documentation, you can do so by editing the Mar
 The documentation is built using [MkDocs](https://www.mkdocs.org/) and can be previewed locally running the following command:
 
 ```bash
-make docs-serve
+task docs-serve
 ```
 
 Once you have made your changes, you can follow these steps to contribute:
@@ -168,32 +168,32 @@ We follow [Conventional Comments](https://conventionalcomments.org) to keep revi
 ## Tooling
 
 !!! important
-    All default project commands require **GNU Make** and are intended to be run on a **UNIX system**.
+    All default project commands use [`task`](https://taskfile.dev), provisioned via [`mise`](https://mise.jdx.dev) from `mise.toml`.
 
 
 !!! important
     You must have **UV** installed to use the most of the default project commands.
 
-The project provides a [`Makefile`](https://github.com/dimanu-py/instant-python/blob/main/makefile) with some helpful commands, 
-this commands must be run from the root of the project. For more details on each command, run `make help`.
+The project provides a [`Taskfile`](https://github.com/dimanu-py/instant-python/blob/main/Taskfile.yml) with some helpful commands,
+this commands must be run from the root of the project. For more details on each command, run `task` or `task --list-all`.
 
-- **Environment Setup:** Run `make local-setup` to create a virtual environment, install all dependencies (development + production), and install pre-commit hooks.
-- **Install Dependencies:** Run `make install` to install all dependencies (development + production).
-- **Code Formatting:** Run `make check-format` to check for code format issues and `make format` to automatically format code using Ruff.
-- **Linting:** Run `make check-lint` to check code quality using Ruff for static analysis and `make lint` to automatically fix linting issues.
-- **Testing:** Run `make test` to execute all tests.
-- **Coverage:** Run `make coverage` to generate a test coverage report.
-- **Build:** Run `make build` to build the project.
-- **Audit:** Run `make audit` to audit dependencies for known vulnerabilities.
-- **Secrets Scanning:** Run `make secrets` to scan for secrets in the hole codebase.
-- **Environment Cleanup:** Run `make clean` to remove the virtual environment, caches, and all generated files.
+- **Environment Setup:** Run `task local-setup` to create a virtual environment, install all dependencies (development + production), and install pre-commit hooks.
+- **Install Dependencies:** Run `task install` to install all dependencies (development + production).
+- **Code Formatting:** Run `task check-format` to check for code format issues and `task format` to automatically format code using Ruff.
+- **Linting:** Run `task check-lint` to check code quality using Ruff for static analysis and `task lint` to automatically fix linting issues.
+- **Testing:** Run `task test` to execute all tests.
+- **Coverage:** Run `task coverage` to generate a test coverage report.
+- **Build:** Run `task build` to build the project.
+- **Audit:** Run `task audit` to audit dependencies for known vulnerabilities.
+- **Secrets Scanning:** Run `task secrets` to scan for secrets in the hole codebase.
+- **Environment Cleanup:** Run `task clean` to remove the virtual environment, caches, and all generated files.
 
 There are some additional commands that can be used during development:
 
-- **Update Dependencies:** Run `make update` to update all dependencies to their latest versions.
-- **Adding / Removing Dependencies:** Use `make add-dep` or `make remove-dep` to add or remove dependencies from the project.
-- **Run test in watch mode:** Run `make watch` to run tests in watch mode, automatically re-running tests when files change.
-- **Serve Documentation:** Run `make docs-serve` to serve the documentation locally, allowing you to preview changes in real-time.
+- **Update Dependencies:** Run `task update` to update all dependencies to their latest versions.
+- **Adding / Removing Dependencies:** Use `task add-dep` or `task remove-dep` to add or remove dependencies from the project.
+- **Run test in watch mode:** Run `task watch` to run tests in watch mode, automatically re-running tests when files change.
+- **Serve Documentation:** Run `task docs-serve` to serve the documentation locally, allowing you to preview changes in real-time.
 
 ## Donating
 
