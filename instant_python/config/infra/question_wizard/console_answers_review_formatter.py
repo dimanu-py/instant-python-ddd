@@ -1,4 +1,4 @@
-from typing import ClassVar, override
+from typing import ClassVar
 
 from instant_python.config.domain.answers_review_formatter import AnswersReviewFormatter
 
@@ -12,7 +12,6 @@ class ConsoleAnswersReviewFormatter(AnswersReviewFormatter):
         "dependencies": "Dependencies",
     }
 
-    @override
     def print_answers(self, answers: dict) -> None:
         summary = [self._TITLE]
         for section_key, section_content in answers.items():
