@@ -26,11 +26,12 @@ class QuestionaryConsoleWizard(QuestionWizard):
             answer = step.run()
             self._answers.update(answer)
 
-        self._show_answers_summary()
-        return ConfigSchema.from_primitives(self._answers)
+        config = ConfigSchema.from_primitives(self._answers)
+        self._show_answers_summary(config)
+        return config
 
     def _show_section_heading(self, position: int, section_title: str) -> None:
         print(f"[{position}/{len(self._steps)}] {section_title}")
 
-    def _show_answers_summary(self) -> None:
-        self._review_formatter.print_answers(self._answers)
+    def _show_answers_summary(self, config: ConfigSchema) -> None:
+        self._review_formatter.print_answers(dict(**config.to_primitives()))

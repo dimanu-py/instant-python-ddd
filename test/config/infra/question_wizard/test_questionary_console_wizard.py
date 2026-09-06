@@ -2,13 +2,14 @@ from typing import ClassVar
 
 import pytest
 from doublex import Spy
-from doublex_expects import have_been_called
-from expects import equal, expect
+from doublex_expects import have_been_called, have_been_called_with
+from expects import equal, expect, have_keys
 
 from instant_python.config.domain.answers_review_formatter import AnswersReviewFormatter
 from instant_python.config.infra.question_wizard.questionary_console_wizard import (
     QuestionaryConsoleWizard,
 )
+from instant_python.shared.domain.general_config import InvalidDependencyManagerValue
 from instant_python.shared.supported_templates import SupportedTemplates
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
@@ -17,6 +18,38 @@ from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 class TestQuestionaryConsoleWizard:
     happy_path_answers: ClassVar[list[object]] = [
         "example-project",
+        "src",
+        "Example project description",
+        "0.1.0",
+        "Jane Doe",
+        "MIT",
+        "3.13",
+        "uv",
+        SupportedTemplates.STANDARD.value,
+        [],
+        True,
+        "jane",
+        "jane@example.com",
+        False,
+    ]
+    invalid_manager_answers: ClassVar[list[object]] = [
+        "example-project",
+        "src",
+        "Example project description",
+        "0.1.0",
+        "Jane Doe",
+        "MIT",
+        "3.13",
+        "invalid-manager",
+        SupportedTemplates.STANDARD.value,
+        [],
+        True,
+        "jane",
+        "jane@example.com",
+        False,
+    ]
+    invalid_format_slug: ClassVar[list[object]] = [
+        "ExampleProject",
         "src",
         "Example project description",
         "0.1.0",
@@ -53,7 +86,9 @@ class TestQuestionaryConsoleWizard:
         self._event_log: list[str] = []
         self._answers_formatter = Spy(AnswersReviewFormatter)
         self._fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
-        self._console_wizard = QuestionaryConsoleWizard(questionary=self._fake_questionary, review_formatter=self._answers_formatter)
+        self._console_wizard = QuestionaryConsoleWizard(
+            questionary=self._fake_questionary, review_formatter=self._answers_formatter
+        )
 
     def test_should_ask_all_sections_in_order(self) -> None:
         self._console_wizard.run()
@@ -76,3 +111,24 @@ class TestQuestionaryConsoleWizard:
         self._console_wizard.run()
 
         expect(self._answers_formatter.print_answers).to(have_been_called)
+
+    def test_should_fail_fast_when_config_has_invalid_answers(self) -> None:
+        fake_questionary = FakeQuestionary(answers=self.invalid_manager_answers, event_log=self._event_log)
+        console_wizard = QuestionaryConsoleWizard(
+            questionary=fake_questionary, review_formatter=self._answers_formatter
+        )
+
+        with pytest.raises(InvalidDependencyManagerValue):
+            console_wizard.run()
+
+    def test_should_send_formatted_slug_to_answers_formatter(self) -> None:
+        fake_questionary = FakeQuestionary(answers=self.invalid_format_slug, event_log=self._event_log)
+        console_wizard = QuestionaryConsoleWizard(
+            questionary=fake_questionary, review_formatter=self._answers_formatter
+        )
+
+        console_wizard.run()
+
+        expect(self._answers_formatter.print_answers).to(
+            have_been_called_with(have_keys(general=have_keys(slug="exampleproject"))).once
+        )
