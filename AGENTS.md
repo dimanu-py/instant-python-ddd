@@ -111,21 +111,21 @@ Task management lives in the Linear project, not in a JSON file: the feature sta
 
 ## Tool usage
 
-**NEVER** call tools like `pytest`, `black`, `mypy`, or similar directly. Always use the corresponding `make` or `task` target.
+**NEVER** call tools like `pytest`, `black`, `mypy`, or similar directly. Always use the corresponding `task` target.
 
 ### Usage Rules
-1. **Testing**: When running tests, use `make unit`, `make integration`, `make acceptance` or `make test` as appropriate.
-2. **Formatting**: For formatting, use `make format` or `make check-format`.
-3. **Type Checking**: For type checking, use `make check-typing`.
-4. **Lint Checks**: For lint checks, use `make check-lint`.
-5. **Building**: For building or updating the app, use `make build` or `make update`.
-6. **Help**: If you are unsure which target to use, run `make help` to see all available options.
-7. **New Operations**: If a new operation is needed, prefer adding a new Makefile target rather than running a tool directly.
+1. **Testing**: When running tests, use `task test`.
+2. **Formatting**: For formatting, use `task format` or `task check-format`.
+3. **Type Checking**: For type checking, use `task check-typing`.
+4. **Lint Checks**: For lint checks, use `task check-lint`.
+5. **Building**: For building or updating the app, use `task build` or `task update`.
+6. **Help**: If you are unsure which target to use, run `task` (or `task --list-all`) to see all available options.
+7. **New Operations**: If a new operation is needed, prefer adding a new Taskfile target rather than running a tool directly.
 
 ### Good vs Bad Examples
 ```sh
-# Good: Use make target for unit tests
-make unit
+# Good: Use task target to run tests
+task test
 
 # Bad: Call pytest directly
 pytest tests
@@ -138,7 +138,7 @@ When working on this project:
 1. **Start every response with contemplation** 🌲
 2. **Take baby steps** - one test, one file, one change at a time 👣
 3. **Always write the failing test first** (TDD) ❌➡️✅
-4. **Use make targets** - never call tools directly 🔧
+4. **Use task targets** - never call tools directly 🔧
 5. **Keep code small and typed** - max 20 lines per method 📏
 6. **Show your thinking process** - be conversational and progressive 💭
 7. **Question everything** - assumptions, requirements, design choices ❓

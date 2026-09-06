@@ -49,7 +49,7 @@ REFACTOR  → clean up with the bar green: names, duplication, short functions
 2. Record in `docs/progress/current.md`: `Feature in progress: <name>` and the list of requirements `R1...R<n>` you will cover.
 3. Before starting the TDD cycle, check if the scenario requires a risky change (DB schema, API contract, service replacement). If so, use the **micro_steps_coach** skill to plan the expand-contract pattern first — then proceed with TDD.
 4. **For each requirement in order**, execute one or more Red-Green-Refactor cycles using Outside-In TDD:
-   a. **RED** — write a test in `test/` that encodes the functional requirement and verify it **fails** (`make unit`). Apply the **test_desiderata** skill to ensure the test is isolated, fast, specific, and behavioral. A test that passes on the first try proves nothing — adjust it or be suspicious.
+   a. **RED** — write a test in `test/` that encodes the functional requirement and verify it **fails** (`task test`). Apply the **test_desiderata** skill to ensure the test is isolated, fast, specific, and behavioral. A test that passes on the first try proves nothing — adjust it or be suspicious.
    b. **GREEN** — the minimum implementation in `instant_python/` that makes it pass.
    c. **REFACTOR** — with the bar green, apply the **xp_refactor** skill to eliminate duplication, improve naming, and simplify. Run tests again after every change.
    d. Append the cycle to `docs/progress/tdd_<name>.md` (which `R<n>`, which test, what minimum change).
@@ -57,7 +57,7 @@ REFACTOR  → clean up with the bar green: names, duplication, short functions
    - **Happy path and critical error scenarios** → start with a delivery acceptance test (TestClient, full stack). Then drive the application layer, then domain and infra.
    - **All other scenarios (edge cases, validation errors, etc.)** → write unit tests at the delivery layer (use case mocked) or application layer (ports mocked) as appropriate. Do not write acceptance tests for these.
 6. **Traceability**: every `R<n>` scenario must be covered by at least one concrete test. Write the `R<n> → test` map in `docs/progress/tdd_<name>.md`.
-7. Run `make test`. Green end to end.
+7. Run `task test`. Green end to end.
 8. **Do not mark `done` yourself.** The `judge` must review first.
 9. If the `leader` reinvokes you after the judge has approved and mutation testing has passed: change the Linear status to `Release` and move the summary to `docs/progress/history.md`.
 

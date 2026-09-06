@@ -47,13 +47,13 @@ You have two gates: **review** (coverage, TDD discipline, code quality) and **mu
    - Evaluate code quality, simplicity and maintainability with **code_review** skill, and alignment with
      `AGENTS.md`'s Core Principles and Code Standards.
    - Evaluate security concerns using the **security_review** skill
-5. Run `make test`. Must be green.
+5. Run `task test`. Must be green.
 6. **If review passes**, run mutation testing:
    - Use the **mutation_testing** skill and `mutmut` as the mutation tool.
-   - The threshold is **100% on new/touched lines**. Scope the run to the feature with the dotted module pattern, never a filesystem path: `make mutate MUTATE_PATH="instant_python.<feature>.*"`. In mutmut 3.7 the positional arg filters mutant names, so a directory path like `instant_python/<feature>/` matches nothing and silently mutates the whole project.
+   - The threshold is **100% on new/touched lines**. Scope the run to the feature with the dotted module pattern, never a filesystem path: `task mutate MUTATE_PATH="instant_python.<feature>.*"`. In mutmut 3.7 the positional arg filters mutant names, so a directory path like `instant_python/<feature>/` matches nothing and silently mutates the whole project.
    - When the suite contains a pre-existing red test, mutmut aborts. Keep the run scoped and deterministic.
    - `len()` calls are never mutated and decorated functions (e.g. `@property`) are skipped; do not demand mutants on those lines — compensate with behavioral tests that exercise the public output.
-   - Review `make mutate` output and `mutmut show <id>` for surviving mutants.
+   - Review `task mutate` output and `mutmut show <id>` for surviving mutants.
    - For each surviving mutant, document: file, line, mutation applied, and what test is missing to kill it.
 7. Emit verdict.
 
@@ -102,7 +102,7 @@ CHANGES_REQUESTED -> docs/progress/judge_<name>.md
 
 - NEVER write or edit production code or tests in `instant_python/` or `test/` — you review,
   you don't implement.
-- Never approve with red tests or `make test` failing.
+- Never approve with red tests or `task test` failing.
 - Never approve if any requirement has no test coverage.
 - Never approve production code that no test demands.
 - Never edit the code. You say what fails, you do not fix it.

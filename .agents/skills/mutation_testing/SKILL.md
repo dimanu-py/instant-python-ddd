@@ -46,7 +46,7 @@ TDD Workflow                    Mutation Testing Validation
 ## Reviewing a Mutation Results
 
 `mutmut` generates and runs the real mutants — there's no need to simulate them by hand. Use
-this process to go from a `make mutate` run to a reject/approve decision:
+this process to go from a `task mutate` run to a reject/approve decision:
 
 ### Step 1: Scope to What Changed
 
@@ -60,7 +60,7 @@ changed are relevant to this review.
 
 ### Step 2: Run and Read Results
 
-Run `make mutate`, then `uv run mutmut results` for the mutation score and the list of
+Run `task mutate`, then `uv run mutmut results` for the mutation score and the list of
 survived mutants (see Integration with mutmut below).
 
 ### Step 3: Classify Each Relevant Survived Mutant
@@ -171,8 +171,8 @@ if value is None:  # Mutating to == None has same effect
 ### Running mutmut
 
 ```bash
-# Always through the make target — never call mutmut directly
-make mutate
+# Always through the task target — never call mutmut directly
+task mutate
 
 # Under the hood, this runs:
 uv run mutmut run
@@ -185,11 +185,11 @@ on the dotted module path:
 uv run mutmut run "instant_python.module_name*"
 ```
 
-`make mutate` exposes this as the `MUTATE_PATH` var, so you don't have to call
+`task mutate` exposes this as the `MUTATE_PATH` var, so you don't have to call
 mutmut directly to scope a run:
 
 ```bash
-make mutate MUTATE_PATH="instant_python.module_name*"
+task mutate MUTATE_PATH="instant_python.module_name*"
 ```
 
 To derive the pattern from a changed file, drop the `.py` extension and replace `/` with `.`:
