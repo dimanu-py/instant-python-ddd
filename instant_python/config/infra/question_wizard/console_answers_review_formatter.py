@@ -1,4 +1,4 @@
-from typing import override, ClassVar
+from typing import ClassVar, override
 
 from instant_python.config.domain.answers_review_formatter import AnswersReviewFormatter
 
@@ -20,6 +20,13 @@ class ConsoleAnswersReviewFormatter(AnswersReviewFormatter):
             summary.append(section_title)
             if not section_content:
                 summary.append("  None")
+                continue
+            if isinstance(section_content, list):
+                for dependency in section_content:
+                    env_content = "(prod)"
+                    if dependency["is_dev"] is True:
+                        env_content = f"(dev, group: {dependency['group']})" if dependency["group"] != "" else "(dev)"
+                    summary.append(f"  {dependency['name']}=={dependency['version']} {env_content}")
                 continue
             for field_title, field_content in section_content.items():
                 if isinstance(field_content, list):
