@@ -16,7 +16,7 @@ from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
 @pytest.mark.unit
 class TestQuestionaryConsoleWizard:
-    happy_path_answers: ClassVar[list[object]] = [
+    _HAPPY_PATH_ANSWERS: ClassVar[list[object]] = [
         "example-project",
         "src",
         "Example project description",
@@ -32,7 +32,7 @@ class TestQuestionaryConsoleWizard:
         "jane@example.com",
         False,
     ]
-    invalid_manager_answers: ClassVar[list[object]] = [
+    _ANSWERS_WITH_INVALID_MANAGER: ClassVar[list[object]] = [
         "example-project",
         "src",
         "Example project description",
@@ -48,7 +48,7 @@ class TestQuestionaryConsoleWizard:
         "jane@example.com",
         False,
     ]
-    invalid_format_slug: ClassVar[list[object]] = [
+    _ANSWERS_WITH_WRONG_SLUG_FORMAT: ClassVar[list[object]] = [
         "ExampleProject",
         "src",
         "Example project description",
@@ -85,7 +85,7 @@ class TestQuestionaryConsoleWizard:
     def setup_method(self) -> None:
         self._event_log: list[str] = []
         self._answers_formatter = Spy(AnswersReviewFormatter)
-        self._fake_questionary = FakeQuestionary(answers=self.happy_path_answers, event_log=self._event_log)
+        self._fake_questionary = FakeQuestionary(answers=self._HAPPY_PATH_ANSWERS, event_log=self._event_log)
         self._console_wizard = QuestionaryConsoleWizard(
             questionary=self._fake_questionary, review_formatter=self._answers_formatter
         )
@@ -113,7 +113,7 @@ class TestQuestionaryConsoleWizard:
         expect(self._answers_formatter.print_answers).to(have_been_called)
 
     def test_should_fail_fast_when_config_has_invalid_answers(self) -> None:
-        fake_questionary = FakeQuestionary(answers=self.invalid_manager_answers, event_log=self._event_log)
+        fake_questionary = FakeQuestionary(answers=self._ANSWERS_WITH_INVALID_MANAGER, event_log=self._event_log)
         console_wizard = QuestionaryConsoleWizard(
             questionary=fake_questionary, review_formatter=self._answers_formatter
         )
@@ -122,7 +122,7 @@ class TestQuestionaryConsoleWizard:
             console_wizard.run()
 
     def test_should_send_formatted_slug_to_answers_formatter(self) -> None:
-        fake_questionary = FakeQuestionary(answers=self.invalid_format_slug, event_log=self._event_log)
+        fake_questionary = FakeQuestionary(answers=self._ANSWERS_WITH_WRONG_SLUG_FORMAT, event_log=self._event_log)
         console_wizard = QuestionaryConsoleWizard(
             questionary=fake_questionary, review_formatter=self._answers_formatter
         )
