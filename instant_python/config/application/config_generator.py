@@ -10,10 +10,12 @@ class ConfigGenerator:
 
     def execute(self) -> None:
         config = self._ask_project_configuration_to_user()
+        if not config:
+            return
         self._save_configuration(config)
 
     def _save_configuration(self, config: ConfigSchema) -> None:
         self._repository.write(config)
 
-    def _ask_project_configuration_to_user(self) -> ConfigSchema:
+    def _ask_project_configuration_to_user(self) -> ConfigSchema | None:
         return self._question_wizard.run()

@@ -22,3 +22,16 @@ class TestConfigGenerator:
 
         expect(question_wizard).to(have_been_satisfied)
         expect(config_repository).to(have_been_satisfied)
+
+    def test_should_not_save_configuration_when_config_has_been_discarded(self) -> None:
+        question_wizard = Mock(QuestionWizard)
+        config_repository = Mock(ConfigRepository)
+        config_generator = ConfigGenerator(question_wizard=question_wizard, repository=config_repository)
+
+        expect_call(question_wizard).run().returns(None)
+        expect_call(config_repository).write(None)
+
+        config_generator.execute()
+
+        expect(question_wizard).to(have_been_satisfied)
+        expect(config_repository).not_to(have_been_satisfied)
