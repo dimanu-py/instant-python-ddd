@@ -29,7 +29,7 @@ jobs:
 
       - name: 🔖 Create release
         id: released
-        uses: python-semantic-release/python-semantic-release@39dd2052f2ce8282a5d932c31d58a2ca06d2550e # v10.0.2
+        uses: python-semantic-release/python-semantic-release@9a026e9303981c866c3425723009becb2437c757 # v10.0.2
         with:
           build: true
           push: true
