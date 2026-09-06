@@ -18,9 +18,10 @@ class QuestionaryConsoleWizard(QuestionWizard):
             DependenciesStep(questionary=questionary),
         )
         self._review_formatter = review_formatter
+        self._questionary = questionary
         self._answers = {}
 
-    def run(self) -> ConfigSchema:
+    def run(self) -> ConfigSchema | None:
         for position, step in enumerate(self._steps, start=1):
             self._show_section_heading(position, step.title)
             answer = step.run()
@@ -28,6 +29,9 @@ class QuestionaryConsoleWizard(QuestionWizard):
 
         config = ConfigSchema.from_primitives(self._answers)
         self._show_answers_summary(config)
+        if self._user_wants_to_discard_config():
+            print("Configuration has been discarded. No 'ipy.yml' will be created.")
+            return None
         return config
 
     def _show_section_heading(self, position: int, section_title: str) -> None:
@@ -35,3 +39,8 @@ class QuestionaryConsoleWizard(QuestionWizard):
 
     def _show_answers_summary(self, config: ConfigSchema) -> None:
         self._review_formatter.print_answers(dict(**config.to_primitives()))
+
+    def _user_wants_to_discard_config(self) -> bool:
+        return not self._questionary.boolean_question(
+            message="Do you want to save this project configuration?", default=True
+        )

@@ -3,7 +3,7 @@ from typing import ClassVar
 import pytest
 from doublex import Spy
 from doublex_expects import have_been_called, have_been_called_with
-from expects import equal, expect, have_keys
+from expects import be_none, equal, expect, have_keys
 
 from instant_python.config.domain.answers_review_formatter import AnswersReviewFormatter
 from instant_python.config.infra.question_wizard.questionary_console_wizard import (
@@ -31,6 +31,7 @@ class TestQuestionaryConsoleWizard:
         "jane",
         "jane@example.com",
         False,
+        True,
     ]
     _ANSWERS_WITH_INVALID_MANAGER: ClassVar[list[object]] = [
         "example-project",
@@ -47,23 +48,10 @@ class TestQuestionaryConsoleWizard:
         "jane",
         "jane@example.com",
         False,
-    ]
-    _ANSWERS_WITH_WRONG_SLUG_FORMAT: ClassVar[list[object]] = [
-        "ExampleProject",
-        "src",
-        "Example project description",
-        "0.1.0",
-        "Jane Doe",
-        "MIT",
-        "3.13",
-        "uv",
-        SupportedTemplates.STANDARD.value,
-        [],
         True,
-        "jane",
-        "jane@example.com",
-        False,
     ]
+    _ANSWERS_WITH_WRONG_SLUG_FORMAT: ClassVar[list[object]] = ["ExampleProject"] + _HAPPY_PATH_ANSWERS[1:]
+    _NOT_SAVED_ANSWERS: ClassVar[list[object]] = _HAPPY_PATH_ANSWERS[:-1] + [False]
 
     expected_question_messages: ClassVar[list[str]] = [
         "What is the project name?",
@@ -80,6 +68,7 @@ class TestQuestionaryConsoleWizard:
         "What is your Git user name?",
         "What is your Git email?",
         "Do you want to add initial dependencies?",
+        "Do you want to save this project configuration?",
     ]
 
     def setup_method(self) -> None:
@@ -132,3 +121,13 @@ class TestQuestionaryConsoleWizard:
         expect(self._answers_formatter.print_answers).to(
             have_been_called_with(have_keys(general=have_keys(slug="exampleproject"))).once
         )
+
+    def test_should_return_empty_config_when_user_does_not_save_it(self) -> None:
+        fake_questionary = FakeQuestionary(answers=self._NOT_SAVED_ANSWERS, event_log=self._event_log)
+        console_wizard = QuestionaryConsoleWizard(
+            questionary=fake_questionary, review_formatter=self._answers_formatter
+        )
+
+        config = console_wizard.run()
+
+        expect(config).to(be_none)

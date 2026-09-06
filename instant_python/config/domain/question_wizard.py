@@ -5,5 +5,5 @@ from instant_python.shared.domain.config_schema import ConfigSchema
 
 class QuestionWizard(ABC):
     @abstractmethod
-    def run(self) -> ConfigSchema:
+    def run(self) -> ConfigSchema | None:
         raise NotImplementedError
