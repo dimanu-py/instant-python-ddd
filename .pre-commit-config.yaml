@@ -60,14 +60,14 @@ repos:
     hooks:
       - id: lint
         name: 🧹 Code Linter
-        entry: make lint
+        entry: task lint
         language: system
         stages:
           - pre-push
 
       - id: format
         name: 🎨 Code Formatter
-        entry: make format
+        entry: task format
         language: system
         stages:
           - pre-push
