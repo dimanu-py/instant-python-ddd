@@ -15,7 +15,7 @@ class TestConfigGenerator:
         config_generator = ConfigGenerator(question_wizard=question_wizard, repository=config_repository)
         config = ConfigSchemaMother.any()
 
-        expect_call(question_wizard).run().returns(config.to_primitives())
+        expect_call(question_wizard).run().returns(config)
         expect_call(config_repository).write(config)
 
         config_generator.execute()
