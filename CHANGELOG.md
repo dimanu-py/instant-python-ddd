@@ -2,6 +2,76 @@
 
 <!-- version list -->
 
+## v0.25.0 (2026-09-06)
+
+### ✨ Features
+
+- **config**: Not store configuration file when users decide to discard it
+  ([`e0c7998`](https://github.com/dimanu-py/instant-python/commit/e0c7998bfa38870d82e58c3c5b52a3e57fb2af0c))
+
+- **config**: Ask the user if they want to save the configuration or not
+  ([`89e95f9`](https://github.com/dimanu-py/instant-python/commit/89e95f9ecb2ca9ba548ae9c835bdea2c0b0e09ea))
+
+- **config**: Inject answers shummary formatter into real app command
+  ([`0556573`](https://github.com/dimanu-py/instant-python/commit/05565730c92ec8ac7b4269f4fc7dd4fb9c3753af))
+
+- **config**: Print dependency summary including production and development dependencies when
+  specified
+  ([`ca6652e`](https://github.com/dimanu-py/instant-python/commit/ca6652e66931ec0dc36859d8d91f7ac8ea65f8dd))
+
+- **config**: Print empty summary when no dependencies are selected
+  ([`5df6944`](https://github.com/dimanu-py/instant-python/commit/5df69442deb8f53895f53628e357c8ff691269eb))
+
+- **config**: Print git summary section
+  ([`9e97281`](https://github.com/dimanu-py/instant-python/commit/9e97281096fea1f98b05eef760b8ea9ff41c23d6))
+
+- **config**: Show selected built in features in template summary
+  ([`28e327c`](https://github.com/dimanu-py/instant-python/commit/28e327ce2d5d7127f8065572f6d195f7b00d905f))
+
+- **config**: Show summary for template configuration section supporting previous sections
+  ([`f4cc977`](https://github.com/dimanu-py/instant-python/commit/f4cc977fbfa06fbd742469c06e89a64908e6f6d3))
+
+- **config**: Show summary for general configuration section
+  ([`c2fc86b`](https://github.com/dimanu-py/instant-python/commit/c2fc86bb02d9d79c1b38a408cd4015ffd9a439f0))
+
+- **config**: Show review configuration summary title
+  ([`bb2d97d`](https://github.com/dimanu-py/instant-python/commit/bb2d97d4351d23423235210917c8c2b4144ae12d))
+
+- **config**: Include new answer formatter to print answers summary to the user
+  ([`e7dc03d`](https://github.com/dimanu-py/instant-python/commit/e7dc03d14b4e87b5021361858428a5eb396f4710))
+
+### 🪲 Bug Fixes
+
+- **config**: Remove override annotation to make library compatible with older python versions
+  ([`df71f74`](https://github.com/dimanu-py/instant-python/commit/df71f74155caec074ace285b96cce71ced950b3f))
+
+### ⚙️ Build System
+
+- Upgrade gitpython to a version that fixed vulnerabilities
+  ([`b224ae1`](https://github.com/dimanu-py/instant-python/commit/b224ae12c4ca49a73de44526366d5829655f6908))
+
+### ♻️ Refactoring
+
+- **config**: Remove 'year' field from ConfigSchema and compute it as a global env variable in Jinja
+  instead
+  ([`c76356b`](https://github.com/dimanu-py/instant-python/commit/c76356b34be61ef57154b505f626bb9cd2452b75))
+
+- **config**: Correct typo in internal validation method
+  ([`8f8acdc`](https://github.com/dimanu-py/instant-python/commit/8f8acdcc22b4a8fcde2b3759fe25d94b9de85cb9))
+
+- **config**: Build config schema before showing summary to avoid printing incorrect values
+  ([`8cc1c77`](https://github.com/dimanu-py/instant-python/commit/8cc1c77366acd882c4aa489b8564f9aaf6841823))
+
+- **config**: Let console wizard return ConfigSchema instead of primitives
+  ([`1e19771`](https://github.com/dimanu-py/instant-python/commit/1e19771ef7b3c2329c19548ba10e911560e1a93f))
+
+- **config**: Remove answers existing check since empty dict will be ignored directly
+  ([`1799a4d`](https://github.com/dimanu-py/instant-python/commit/1799a4daa9dcc8f784929abc17337ee8b2187c4f))
+
+- **config**: Substitue empty value with None only when it is a list
+  ([`ada43f5`](https://github.com/dimanu-py/instant-python/commit/ada43f5022c50d013043981129da568c2219b0ba))
+
+
 ## v0.24.2 (2026-08-07)
 
 ### 🪲 Bug Fixes
