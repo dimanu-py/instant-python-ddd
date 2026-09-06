@@ -1,6 +1,5 @@
 import re
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from dataclasses import asdict, dataclass
 
 from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.supported_licenses import SupportedLicenses
@@ -18,7 +17,6 @@ class GeneralConfig:
     license: str
     python_version: str
     dependency_manager: str
-    year: int = field(default=datetime.now(tz=timezone.utc).year)
 
     def __post_init__(self) -> None:
         self.version = str(self.version)

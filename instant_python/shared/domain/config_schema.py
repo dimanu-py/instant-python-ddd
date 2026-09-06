@@ -21,6 +21,9 @@ _TEMPLATE = "template"
 _GIT = "git"
 _REQUIRED_CONFIG_KEYS = [_GENERAL, _DEPENDENCIES, _TEMPLATE, _GIT]
 
+# Dropped rather than rejected so config files saved by older versions still load.
+_LEGACY_GENERAL_KEYS = {"year"}
+
 
 @dataclass
 class ConfigSchema:
@@ -36,8 +39,9 @@ class ConfigSchema:
     def from_primitives(cls, content: dict[str, dict | list], custom_config_path: Path | None = None) -> "ConfigSchema":
         cls._ensure_config_is_not_empty(content)
         cls._ensure_all_required_sections_are_present(content)
+        general_content = {k: v for k, v in content[_GENERAL].items() if k not in _LEGACY_GENERAL_KEYS}
         return cls(
-            general=GeneralConfig(**content[_GENERAL]),
+            general=GeneralConfig(**general_content),
             dependencies=[DependencyConfig(**dep) for dep in content[_DEPENDENCIES]] if content[_DEPENDENCIES] else [],
             template=TemplateConfig(**content[_TEMPLATE]),
             git=GitConfig(**content[_GIT]),

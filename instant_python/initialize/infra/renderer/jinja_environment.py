@@ -1,4 +1,5 @@
 from collections.abc import Callable
+from datetime import datetime, timezone
 from typing import Any, ClassVar
 
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader, PackageLoader
@@ -32,6 +33,7 @@ class JinjaEnvironment:
         self.add_filter("compute_base_path", _compute_base_path)
         self.add_filter("has_dependency", _has_dependency)
         self.add_filter("resolve_import_path", _resolve_import_path)
+        self._env.globals["current_year"] = datetime.now(tz=timezone.utc).year
 
     def render_template(self, name: str, context: dict[str, Any] | None = None) -> str:
         template = self._env.get_template(name)

@@ -25,6 +25,9 @@ class TestJinjaEnvironment:
 
         expect(self._jinja_environment._env.filters).to(have_keys("custom_filter"))
 
+    def test_should_compute_current_year_and_add_to_global_env(self) -> None:
+        expect(self._jinja_environment._env.globals).to(have_keys("current_year"))
+
     def test_should_render_template_from_user_templates_folder_when_template_is_found(self) -> None:
         rendered_content = self._jinja_environment.render_template("hello_world.j2", {"name": "World"})
 

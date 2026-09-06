@@ -187,7 +187,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [{{ general.year }}] [{{ general.author }}]
+   Copyright [{{ current_year }}] [{{ general.author }}]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@
 {% elif general.license == 'MIT' %}
 MIT License
 
-Copyright (c) {{ general.year }} {{ general.author }}
+Copyright (c) {{ current_year }} {{ general.author }}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -873,7 +873,7 @@ Also add information on how to contact you by electronic and paper mail.
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    <program>  Copyright (C) <{{ general.year }}>  <{{ general.author }}>
+    <program>  Copyright (C) <{{ current_year }}>  <{{ general.author }}>
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.

@@ -49,3 +49,25 @@ class TestConfigSchema:
         config = ConfigSchema.from_primitives(raw_config)
 
         expect(config).to_not(be_none)
+
+    def test_should_ignore_legacy_year_field_in_general_section(self) -> None:
+        raw_config = {
+            "general": {
+                "slug": "python-project",
+                "source_name": "src",
+                "description": "Python Project Description",
+                "version": "0.1.0",
+                "author": "Diego Martinez",
+                "license": "MIT",
+                "python_version": "3.13",
+                "dependency_manager": "uv",
+                "year": 2025,
+            },
+            "dependencies": [],
+            "git": {"initialize": False},
+            "template": {"name": "domain_driven_design"},
+        }
+
+        config = ConfigSchema.from_primitives(raw_config)
+
+        expect(config).to_not(be_none)
