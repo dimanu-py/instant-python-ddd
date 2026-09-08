@@ -2,6 +2,28 @@
 
 <!-- version list -->
 
+## v0.26.0 (2026-09-08)
+
+### ✨ Features
+
+- **schema**: Remove year field and add missing built in features in ipy schema file
+  ([`f365f88`](https://github.com/dimanu-py/instant-python/commit/f365f88294745570c7cc7b5f7af9b2a613dc3d42))
+
+### ⚙️ Build System
+
+- Create installation script for Windows
+  ([`aee3d6e`](https://github.com/dimanu-py/instant-python/commit/aee3d6eac108569037c24687ef5a1925cc8eb58c))
+
+- Create installation script for Apple Silicon and Linux
+  ([`f431d2e`](https://github.com/dimanu-py/instant-python/commit/f431d2ec8c767be06dbd57a2c668f72c2678f9c2))
+
+- Bump click to fix vulnerability
+  ([`1c83b66`](https://github.com/dimanu-py/instant-python/commit/1c83b66ab31665dfe44a59221271767adb188249))
+
+- Bump python-semantic-release
+  ([`3e3c7b2`](https://github.com/dimanu-py/instant-python/commit/3e3c7b2c1d0c578184f3cb707d86d8d3fd1dc7e8))
+
+
 ## v0.25.0 (2026-09-06)
 
 ### ✨ Features
