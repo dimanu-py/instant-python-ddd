@@ -61,12 +61,6 @@
           "type": "string",
           "description": "Package and dependency manager",
           "enum": ["uv", "pdm"]
-        },
-        "year": {
-          "type": "integer",
-          "description": "Year for license and copyright (defaults to current year)",
-          "minimum": 2000,
-          "maximum": 2100
         }
       }
     },
@@ -153,7 +147,9 @@
               "fastapi_application",
               "precommit_hook",
               "citation_file",
-              "security_file"
+              "security_file",
+              "ai_agents",
+              "custom_documentation"
             ]
           },
           "uniqueItems": true,
