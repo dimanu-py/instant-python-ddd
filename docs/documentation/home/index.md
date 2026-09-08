@@ -24,6 +24,20 @@ commands like `ng new` or `create-react-app`, but for Python projects.
 
 </td></tr></table></div>
 
+## Quick Start
+
+Once [installed](../getting_started/installation.md), generating a project takes two commands:
+
+```bash
+ipy config   # answer a few questions through an interactive wizard to create your ipy.yml configuration file
+ipy init     # generate the project from that configuration file
+```
+
+- `ipy config` asks you about your project (name, Python version, project manager, template, dependencies, and more) and writes an `ipy.yml` configuration file in the current directory.
+- `ipy init` reads that `ipy.yml` file and generates your new project.
+
+See the [First Steps](../getting_started/first_steps.md) guide for a full walkthrough.
+
 ## Navigation Guide
 
 This section provides a high-level overview of the `instant-python` documentation

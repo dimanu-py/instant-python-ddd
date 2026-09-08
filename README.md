@@ -31,6 +31,20 @@ commands like `ng new` or `create-react-app`, but for Python projects.
 
 </td></tr></table></div>
 
+## 🚀 Quick Start
+
+Once [installed](https://dimanu-py.github.io/instant-python/getting_started/installation/), generating a project takes two commands:
+
+```bash
+ipy config   # answer a few questions through an interactive wizard to create your ipy.yml configuration file
+ipy init     # generate the project from that configuration file
+```
+
+- `ipy config` asks you about your project (name, Python version, project manager, template, dependencies, and more) and writes an `ipy.yml` configuration file in the current directory.
+- `ipy init` reads that `ipy.yml` file and generates your new project.
+
+See the [First Steps](https://dimanu-py.github.io/instant-python/getting_started/first_steps/) guide for a full walkthrough.
+
 ## ✨ NEW ✨ Create Fully Customized Projects
 
 Take full control of your project generation! With **custom templates**, you can:
