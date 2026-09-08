@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.26.1 (2026-09-08)
+
+### 🪲 Bug Fixes
+
+- **release**: Apply fixes to realease binaries
+  ([`43e5e8f`](https://github.com/dimanu-py/instant-python/commit/43e5e8fb893fa14b4d692a562e0f7a58ae6d9800))
+
+
 ## v0.26.0 (2026-09-08)
 
 ### ✨ Features
