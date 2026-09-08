@@ -47,6 +47,11 @@ ipy = "instant_python.cli.cli:app"
 [project.optional-dependencies]
 build = ["uv>=0.7.21"]
 
+[tool.hatch.build.targets.binary]
+scripts = ["ipy"]
+python-version = "3.12"
+pyapp-version = "0.29.0"
+
 
 [dependency-groups]
 dev = [
