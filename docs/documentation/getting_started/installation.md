@@ -41,7 +41,16 @@ change. You can override the install directory with the `IPY_BIN_DIR` environmen
 ### Other installation methods
 
 If your platform isn't covered by the install script, or you prefer to manage `instant-python` as a regular Python package,
-you can install it with `pipx` or `pip` instead.
+you can install it with `uv`, `pipx`, or `pip` instead.
+
+#### Using `uv`
+
+If you already use [uv](https://docs.astral.sh/uv/) to manage Python tools, you can install `instant-python` with `uv tool
+install`, which installs it in an isolated environment just like `pipx`.
+
+```bash
+uv tool install instant-python
+```
 
 #### Using `pipx`
 
