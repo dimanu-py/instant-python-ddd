@@ -9,7 +9,7 @@ from instant_python.config.domain.answers_review_formatter import AnswersReviewF
 from instant_python.config.infra.question_wizard.questionary_console_wizard import (
     QuestionaryConsoleWizard,
 )
-from instant_python.shared.domain.general_config import InvalidDependencyManagerValue
+from instant_python.shared.domain.general_config import InvalidPythonVersionValue
 from instant_python.shared.supported_templates import SupportedTemplates
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
@@ -24,7 +24,6 @@ class TestQuestionaryConsoleWizard:
         "Jane Doe",
         "MIT",
         "3.13",
-        "uv",
         SupportedTemplates.STANDARD.value,
         [],
         True,
@@ -33,15 +32,14 @@ class TestQuestionaryConsoleWizard:
         False,
         True,
     ]
-    _ANSWERS_WITH_INVALID_MANAGER: ClassVar[list[object]] = [
+    _ANSWERS_WITH_INVALID_ANSWER: ClassVar[list[object]] = [
         "example-project",
         "src",
         "Example project description",
         "0.1.0",
         "Jane Doe",
         "MIT",
-        "3.13",
-        "invalid-manager",
+        "3.3",
         SupportedTemplates.STANDARD.value,
         [],
         True,
@@ -61,7 +59,6 @@ class TestQuestionaryConsoleWizard:
         "What is your name?",
         "Which license do you want to use?",
         "Which Python version do you want to use?",
-        "Which dependency manager do you want to use?",
         "Which template do you want to use?",
         "Which built-in features do you want to include?",
         "Do you want to initialize a git repository?",
@@ -102,12 +99,12 @@ class TestQuestionaryConsoleWizard:
         expect(self._answers_formatter.print_answers).to(have_been_called)
 
     def test_should_fail_fast_when_config_has_invalid_answers(self) -> None:
-        fake_questionary = FakeQuestionary(answers=self._ANSWERS_WITH_INVALID_MANAGER, event_log=self._event_log)
+        fake_questionary = FakeQuestionary(answers=self._ANSWERS_WITH_INVALID_ANSWER, event_log=self._event_log)
         console_wizard = QuestionaryConsoleWizard(
             questionary=fake_questionary, review_formatter=self._answers_formatter
         )
 
-        with pytest.raises(InvalidDependencyManagerValue):
+        with pytest.raises(InvalidPythonVersionValue):
             console_wizard.run()
 
     def test_should_send_formatted_slug_to_answers_formatter(self) -> None:

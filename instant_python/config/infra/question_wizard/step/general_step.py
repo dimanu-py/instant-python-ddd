@@ -24,7 +24,6 @@ class GeneralStep(Step):
         self._ask_author_name()
         self._ask_license()
         self._ask_python_version()
-        self._ask_dependency_manager()
 
         return {self._KEY: self._answers}
 
