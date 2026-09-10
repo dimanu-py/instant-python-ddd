@@ -56,3 +56,13 @@ class TestGeneralConfig:
 
     def test_should_raise_error_when_slug_has_no_valid_characters(self) -> None:
         expect(lambda: GeneralConfigMother.with_parameter(slug="!!!")).to(raise_error(InvalidSlugValue))
+
+    def test_should_set_uv_as_default_dependency_manager_when_not_provided(self) -> None:
+        config = GeneralConfigMother.default_dependency_manager()
+
+        expect(config.dependency_manager).to(equal("uv"))
+
+    def test_should_set_uv_as_dependency_manager_when_pdm_is_provided(self) -> None:
+        config = GeneralConfigMother.with_parameter(dependency_manager="pdm")
+
+        expect(config.dependency_manager).to(equal("uv"))

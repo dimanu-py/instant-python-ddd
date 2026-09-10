@@ -8,7 +8,6 @@ from test.random_generator import RandomGenerator
 
 
 class GeneralConfigMother:
-    _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = ["uv"]
     _SUPPORTED_PYTHON_VERSIONS: ClassVar[list[str]] = ["3.10", "3.11", "3.12", "3.13"]
     _SUPPORTED_LICENSES: ClassVar[list[str]] = ["MIT", "Apache", "GPL"]
 
@@ -22,7 +21,7 @@ class GeneralConfigMother:
             author=RandomGenerator.name(),
             license=random.choice(cls._SUPPORTED_LICENSES),
             python_version=random.choice(cls._SUPPORTED_PYTHON_VERSIONS),
-            dependency_manager=random.choice(cls._SUPPORTED_DEPENDENCY_MANAGERS),
+            dependency_manager="uv",
         )
 
     @classmethod
@@ -30,3 +29,15 @@ class GeneralConfigMother:
         defaults = cls.any().to_primitives()
         defaults.update(custom_options)
         return GeneralConfig(**defaults)
+
+    @classmethod
+    def default_dependency_manager(cls) -> GeneralConfig:
+        return GeneralConfig(
+            slug=RandomGenerator.word(),
+            source_name=RandomGenerator.word(),
+            description=RandomGenerator.description(),
+            version=RandomGenerator.version(),
+            author=RandomGenerator.name(),
+            license=random.choice(cls._SUPPORTED_LICENSES),
+            python_version=random.choice(cls._SUPPORTED_PYTHON_VERSIONS),
+        )

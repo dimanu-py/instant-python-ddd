@@ -1,5 +1,5 @@
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 
 from instant_python.shared.application_error import ApplicationError
 from instant_python.shared.supported_licenses import SupportedLicenses
@@ -16,7 +16,7 @@ class GeneralConfig:
     author: str
     license: str
     python_version: str
-    dependency_manager: str
+    dependency_manager: str = field(default=SupportedManagers.UV)
 
     def __post_init__(self) -> None:
         self.version = str(self.version)
@@ -44,6 +44,8 @@ class GeneralConfig:
 
     def _ensure_dependency_manager_is_supported(self) -> None:
         supported_dependency_managers = SupportedManagers.get_supported_managers()
+        if self.dependency_manager == "pdm":
+            self.dependency_manager = SupportedManagers.UV
         if self.dependency_manager not in supported_dependency_managers:
             raise InvalidDependencyManagerValue(self.dependency_manager, supported_dependency_managers)
 
