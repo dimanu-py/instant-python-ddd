@@ -10,6 +10,7 @@ from instant_python.config.delivery import cli as config
 from instant_python.initialize.delivery import cli as init
 from instant_python.metrics.delivery.metrics_middleware import MetricsMiddleware
 from instant_python.shared.application_error import ApplicationError
+from instant_python.version.delivery.cli import version
 
 app = InstantPythonTyper(cls=MetricsMiddleware)
 console = Console()
@@ -38,6 +39,7 @@ def main(
     if ctx.invoked_subcommand is None:
         console.print(ctx.get_help())
 
+app.add_typer(version.app)
 
 app.add_typer(init.app)
 app.add_typer(config.app)
