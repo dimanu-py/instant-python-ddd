@@ -1,3 +1,4 @@
+import pytest
 from expects import be_empty, be_false, be_none, be_true, expect
 
 from instant_python.initialize.domain.node import File
@@ -8,6 +9,7 @@ from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 from test.utils import resources_path
 
 
+@pytest.mark.unit
 class TestJinjaProjectRenderer:
     def test_should_render_standard_project_structure(self) -> None:
         config = ConfigSchemaMother.with_template(template=SupportedTemplates.STANDARD.value)

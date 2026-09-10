@@ -1,11 +1,13 @@
 from typing import ClassVar
 
+import pytest
 from expects import equal, expect
 
 from instant_python.config.infra.question_wizard.step.git_step import GitStep
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
 
+@pytest.mark.unit
 class TestGitStep:
     _INITIALIZE_GIT: ClassVar[bool] = True
     _SKIP_GIT_INITIALIZATION: ClassVar[bool] = False

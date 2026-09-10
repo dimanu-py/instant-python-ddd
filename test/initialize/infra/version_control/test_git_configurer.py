@@ -1,3 +1,4 @@
+import pytest
 from doublex import Mimic, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect, raise_error
@@ -8,6 +9,7 @@ from test.initialize.infra.env_manager.mother.command_execution_result_mother im
 from test.shared.domain.mothers.git_config_mother import GitConfigMother
 
 
+@pytest.mark.unit
 class TestGitConfigurer:
     _SUCCESSFUL_COMMAND_RESULT = CommandExecutionResultMother.success()
     _FAILED_COMMAND_RESULT = CommandExecutionResultMother.failure()

@@ -2,6 +2,7 @@ import json
 import tempfile
 from pathlib import Path
 
+import pytest
 import vcr
 from vcr.request import Request
 
@@ -29,6 +30,7 @@ posthog_vcr = vcr.VCR(
 )
 
 
+@pytest.mark.integration
 class TestPostHogMetricsReporter:
     @posthog_vcr.use_cassette("success_posthog_reporter.yml")
     def test_should_send_metrics_to_posthog(self) -> None:

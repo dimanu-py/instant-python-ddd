@@ -1,3 +1,4 @@
+import pytest
 from expects import be, be_false, be_none, be_true, expect, raise_error
 
 from instant_python.shared.domain.dependency_config import NotDevDependencyIncludedInGroup
@@ -6,6 +7,7 @@ from test.shared.domain.mothers.dependency_config_mother import (
 )
 
 
+@pytest.mark.unit
 class TestDependencyConfig:
     def test_should_allow_to_create_dev_dependency_config(self) -> None:
         dependency_config = DependencyConfigMother.with_parameter(is_dev=True)

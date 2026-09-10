@@ -1,5 +1,6 @@
 from typing import ClassVar
 
+import pytest
 from doublex import Mimic, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect, raise_error
@@ -10,6 +11,7 @@ from test.initialize.infra.env_manager.mother.command_execution_result_mother im
 from test.shared.domain.mothers.dependency_config_mother import DependencyConfigMother
 
 
+@pytest.mark.unit
 class TestUvEnvManager:
     _UV_EXECUTABLE = "~/.local/bin/uv"
     _SUCCESSFUL_COMMAND_RESULT = CommandExecutionResultMother.success()

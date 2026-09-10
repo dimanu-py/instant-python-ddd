@@ -1,8 +1,10 @@
+import pytest
 from expects import be_none, expect, raise_error
 
 from instant_python.shared.domain.config_schema import ConfigKeyNotPresent, ConfigSchema, EmptyConfigurationNotAllowed
 
 
+@pytest.mark.unit
 class TestConfigSchema:
     def test_should_raise_error_if_raw_config_is_empty(self) -> None:
         empty_raw_config = {}

@@ -12,6 +12,7 @@ from test.shared.domain.mothers.general_config_mother import (
 )
 
 
+@pytest.mark.unit
 class TestGeneralConfig:
     def test_should_allow_to_create_general_config_with_valid_parameters(
         self,

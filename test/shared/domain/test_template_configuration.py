@@ -1,3 +1,4 @@
+import pytest
 from expects import expect, raise_error
 
 from instant_python.shared.domain.template_config import (
@@ -11,6 +12,7 @@ from test.shared.domain.mothers.template_config_mother import (
 )
 
 
+@pytest.mark.unit
 class TestTemplateConfig:
     def test_should_not_allow_to_create_template_config_with_unsupported_template(
         self,

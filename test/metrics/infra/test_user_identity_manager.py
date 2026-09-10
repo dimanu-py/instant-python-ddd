@@ -3,11 +3,13 @@ import tempfile
 import uuid
 from pathlib import Path
 
+import pytest
 from expects import be_a, be_true, equal, expect, have_keys
 
 from instant_python.metrics.infra.user_identity_manager import UserIdentityManager
 
 
+@pytest.mark.integration
 class TestUserIdentityManager:
     def test_should_create_metrics_file_and_store_distinct_id_for_new_user(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

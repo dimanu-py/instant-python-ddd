@@ -1,3 +1,4 @@
+import pytest
 from doublex import Mimic, Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect, raise_error
@@ -7,6 +8,7 @@ from instant_python.initialize.infra.formatter.ruff_project_formatter import Ruf
 from test.initialize.infra.env_manager.mother.command_execution_result_mother import CommandExecutionResultMother
 
 
+@pytest.mark.unit
 class TestRuffProjectFormatter:
     _SUCCESSFUL_COMMAND_RESULT = CommandExecutionResultMother.success()
     _FAILED_COMMAND_RESULT = CommandExecutionResultMother.failure()

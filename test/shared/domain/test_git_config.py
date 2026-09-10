@@ -5,6 +5,7 @@ from instant_python.shared.domain.git_config import GitUserOrEmailNotPresent
 from test.shared.domain.mothers.git_config_mother import GitConfigMother
 
 
+@pytest.mark.unit
 class TestGitConfig:
     def test_should_allow_to_initialize_git_with_user_and_email(self) -> None:
         git_config = GitConfigMother.initialize()

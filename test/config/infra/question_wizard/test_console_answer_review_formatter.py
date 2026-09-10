@@ -6,6 +6,7 @@ from expects import equal, expect
 from instant_python.config.infra.question_wizard.console_answers_review_formatter import ConsoleAnswersReviewFormatter
 
 
+@pytest.mark.integration
 class TestConsoleAnswerReviewFormatter:
     _GENERAL_ANSWERS: ClassVar[dict[str, str]] = {
         "slug": "example-project",

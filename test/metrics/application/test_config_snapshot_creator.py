@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pytest
 from doublex import Mock, expect_call
 from expects import be_false, be_true, equal, expect
 
@@ -10,6 +11,7 @@ from instant_python.shared.infra.persistence.yaml_config_repository import Confi
 from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 
 
+@pytest.mark.unit
 class TestConfigSnapshotCreator:
     def setup_method(self) -> None:
         self._repository = Mock(ConfigRepository)

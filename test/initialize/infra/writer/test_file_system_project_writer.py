@@ -2,12 +2,14 @@ import json
 import tempfile
 from pathlib import Path
 
+import pytest
 from approvaltests import verify
 
 from instant_python.initialize.infra.writer.file_system_project_writer import FileSystemProjectWriter
 from test.initialize.domain.mothers.project_structure_mother import ProjectStructureMother
 
 
+@pytest.mark.integration
 class TestFileSystemProjectWriter:
     def test_should_create_standard_directory_in_file_system(self) -> None:
         project_structure = ProjectStructureMother.with_one_directory(name="standard_directory", is_python_module=False)

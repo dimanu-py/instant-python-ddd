@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pytest
 from doublex import Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect
@@ -14,6 +15,7 @@ from test.initialize.domain.mothers.project_structure_mother import ProjectStruc
 from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 
 
+@pytest.mark.unit
 class TestProjectInitializer:
     def setup_method(self) -> None:
         self._renderer = Mock(ProjectRenderer)

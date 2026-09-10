@@ -4,6 +4,7 @@ from expects import be_false, be_true, equal, expect
 from instant_python.metrics.infra.post_hog_config import PostHogConfig
 
 
+@pytest.mark.unit
 class TestPostHogConfig:
     def test_should_have_metrics_enabled_by_default(self) -> None:
         config = PostHogConfig()

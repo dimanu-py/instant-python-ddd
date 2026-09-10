@@ -1,6 +1,7 @@
 import tempfile
 from pathlib import Path
 
+import pytest
 from expects import equal, expect, raise_error
 
 from instant_python.shared.infra.persistence.yaml_config_repository import (
@@ -10,6 +11,7 @@ from instant_python.shared.infra.persistence.yaml_config_repository import (
 from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 
 
+@pytest.mark.integration
 class TestYamlConfigRepository:
     _CONFIG_FILE = "ipy.yml"
 

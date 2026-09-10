@@ -2,11 +2,13 @@ import shutil
 import sys
 import tempfile
 
+import pytest
 from expects import be_false, be_true, contain, equal, expect, raise_error
 
 from instant_python.initialize.infra.env_manager.system_console import CommandExecutionError, SystemConsole
 
 
+@pytest.mark.integration
 class TestSystemCommandExecutor:
     def setup_method(self) -> None:
         self._temp_dir = tempfile.mkdtemp()

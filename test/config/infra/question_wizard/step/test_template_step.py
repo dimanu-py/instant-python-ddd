@@ -1,5 +1,6 @@
 from typing import ClassVar
 
+import pytest
 from expects import contain, expect
 
 from instant_python.config.infra.question_wizard.step.template_step import TemplateStep
@@ -7,6 +8,7 @@ from instant_python.shared.supported_templates import SupportedTemplates
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
 
+@pytest.mark.unit
 class TestTemplateStep:
     _EMPTY_BUILT_IN_FEATURES: ClassVar[list[str]] = []
     _SPECIFY_BOUNDED_CONTEXT: ClassVar[list[bool | str]] = [True, "backoffice", "user"]

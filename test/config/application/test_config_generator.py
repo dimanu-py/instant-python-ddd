@@ -1,3 +1,4 @@
+import pytest
 from doublex import Mock, expect_call
 from doublex_expects import have_been_satisfied
 from expects import expect
@@ -8,6 +9,7 @@ from instant_python.shared.domain.config_repository import ConfigRepository
 from test.shared.domain.mothers.config_schema_mother import ConfigSchemaMother
 
 
+@pytest.mark.unit
 class TestConfigGenerator:
     def test_should_generate_config(self) -> None:
         question_wizard = Mock(QuestionWizard)

@@ -1,3 +1,4 @@
+import pytest
 from expects import be_false, be_none, be_true, equal, expect, have_keys, raise_error
 from jinja2 import TemplateNotFound
 
@@ -13,6 +14,7 @@ from instant_python.shared.supported_templates import SupportedTemplates
 from test.utils import resources_path
 
 
+@pytest.mark.integration
 class TestJinjaEnvironment:
     def setup_method(self) -> None:
         self._jinja_environment = JinjaEnvironment(user_template_path=str(resources_path()))

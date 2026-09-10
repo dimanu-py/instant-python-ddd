@@ -1,5 +1,6 @@
 from typing import ClassVar
 
+import pytest
 from expects import contain, equal, expect
 from pytest import CaptureFixture
 
@@ -7,6 +8,7 @@ from instant_python.config.infra.question_wizard.step.dependencies_step import D
 from test.config.infra.question_wizard.fake_questionary import FakeQuestionary
 
 
+@pytest.mark.unit
 class TestDependencyStep:
     _A_DEPENDENCY_NAME: ClassVar[str] = "sindripy"
     _A_VERSION: ClassVar[str] = "latest"
