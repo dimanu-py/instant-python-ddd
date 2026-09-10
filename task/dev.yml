@@ -1,0 +1,50 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build the project.
+    cmds:
+      - printf "\n⌛ Building the project...\n\n"
+      - uv build
+
+  local-setup:
+    desc: Setup git hooks and install dependencies
+    cmds:
+      - printf "\n⌛ Setting up the project...\n"
+      - task deps:sync-all
+      - uv run -m pre_commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
+
+  claude:
+    desc: Create symlinks for Claude Code compatibility
+    cmds:
+      - printf "\n⌛ Creating Claude Code symlinks...\n"
+      - ln -sf AGENTS.md CLAUDE.md
+      - ln -sfn .agents .claude
+      - ls -la CLAUDE.md .claude
+
+  opencode:
+    desc: Create symlinks for OpenCode compatibility
+    cmds:
+      - printf "\n⌛ Creating OpenCode symlinks...\n"
+      - mkdir -p .opencode
+      - rm -rf .opencode/commands
+      - ln -s ../.agents/commands .opencode/commands
+      - ln -s ../.agents/agents .opencode/agents
+      - ls -la .opencode
+
+  clean:
+    desc: It cleans up the project, removing the virtual environment and some files
+    cmds:
+      - printf "\n⌛ Cleaning up the project...\n\n"
+      - uv run -m pre_commit clean
+      - uv run -m pre_commit uninstall --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
+      - rm --force --recursive .venv
+      - rm --force --recursive `find . -type f -name '*.py[co]'`
+      - rm --force --recursive `find . -name __pycache__`
+      - rm --force --recursive `find . -name .ruff_cache`
+      - rm --force --recursive `find . -name .mypy_cache`
+      - rm --force --recursive `find . -name .pytest_cache`
+      - rm --force --recursive .coverage
+      - rm --force --recursive .coverage.*
+      - rm --force --recursive coverage.xml
+      - rm --force --recursive htmlcov

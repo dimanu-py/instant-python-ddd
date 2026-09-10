@@ -1,0 +1,38 @@
+version: '3'
+
+tasks:
+  sync-all:
+    desc: Install dependencies
+    cmds:
+      - printf "\n⌛ Installing dependencies...\n"
+      - uv sync --all-groups
+
+  update:
+    desc: Update dependencies
+    cmds:
+      - printf "\n⌛ Updating dependencies...\n"
+      - uv lock --upgrade
+      - uv sync --upgrade
+
+  add:
+    desc: Add a new dependency
+    cmds:
+      - uv add {{.dep}}
+
+  remove:
+    desc: Remove a dependency
+    cmds:
+      - uv remove {{.dep}}
+
+  show:
+    desc: Show installed dependencies
+    cmds:
+      - uv tree
+
+  search:
+    desc: Show package details
+    interactive: true
+    cmds:
+      - |
+        read -p "Enter package name to search: " PACKAGE
+        uv pip show $PACKAGE

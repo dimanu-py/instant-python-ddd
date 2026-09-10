@@ -6,123 +6,60 @@ vars:
   BROWSER: '{{.BROWSER | default "open"}}'
   MUTATE_PATH: '{{.MUTATE_PATH | default "instant_python"}}'
 
+includes:
+  dev:
+    taskfile: task/dev.yml
+    aliases: [development]
+
+  test:
+    taskfile: task/test.yml
+    aliases: [tests]
+
+  deps:
+    taskfile: task/deps.yml
+    aliases: [dep]
+
+  docs:
+    taskfile: task/docs.yml
+    aliases: [doc]
+
+
 tasks:
+  # ── Default ──────────────────────────────────────────────────────────────────
   default:
     desc: Show this help.
     cmds:
       - task --list-all
 
-  local-setup:
-    desc: Setup git hooks and install dependencies.
+  help:
+    desc: Show this help
     cmds:
-      - printf "\n⌛ Setting up the project...\n\n"
-      - task: install
-      - uv run -m pre_commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
+      - task --list
 
-  test:
-    desc: Run all test.
+  # ── Code Quality ─────────────────────────────────────────────────────────────
+  type-check:
+    desc: Run mypy type checking
     cmds:
-      - printf "\n⌛ Running tests...\n\n"
-      - uv run pytest test -ra
-
-  coverage:
-    desc: Run all test with coverage.
-    cmds:
-      - printf "\n⌛ Running tests with coverage...\n\n"
-      - uv run coverage run --branch -m pytest test
-      - uv run coverage html
-      - '{{.BROWSER}} htmlcov/index.html'
-
-  mutate:
-    desc: 'Run mutation testing (optional: MUTATE_PATH="instant_python.<module>.*", dotted module pattern).'
-    cmds:
-      - printf "⌛ Running mutation testing...\n\n"
-      - uv run mutmut run {{.MUTATE_PATH}}
-      - uv run mutmut results
-
-  install:
-    desc: Install dependencies.
-    cmds:
-      - printf "\n⌛ Installing dependencies...\n\n"
-      - uv sync --all-groups
-
-  update:
-    desc: Update dependencies.
-    cmds:
-      - printf "\n⌛ Updating dependencies...\n\n"
-      - uv lock --upgrade
-      - uv sync --all-groups
-
-  add-dep:
-    desc: Add a new dependency
-    cmds:
-      - uv add {{.dep}}
-
-  remove-dep:
-    desc: Remove a dependency
-    cmds:
-      - uv remove {{.dep}}
-
-  check-typing:
-    desc: Run mypy type checking.
-    cmds:
-      - printf "\n⌛ Running type checking with mypy...\n\n"
+      - printf "\n⌛ Running type checking with mypy...\n"
       - uv run mypy
 
-  check-lint:
-    desc: Run ruff linting check.
-    cmds:
-      - printf "\n⌛ Running linting check...\n\n"
-      - uvx ruff check instant_python test
-
   lint:
-    desc: Apply ruff linting fix.
+    desc: Apply ruff linting fix
     cmds:
-      - printf "\n⌛ Applying linting fixes...\n\n"
-      - uvx ruff check --fix --exit-non-zero-on-fix --output-format=grouped instant_python test
-
-  check-format:
-    desc: Run ruff format check.
-    cmds:
-      - printf "\n⌛ Checking code formatting...\n\n"
-      - uvx ruff format --check instant_python test
+      - printf "\n⌛ Applying linting fixes...\n"
+      - uvx ruff check --fix instant_python test
 
   format:
-    desc: Apply ruff format fix.
+    desc: Apply ruff format fix
     cmds:
-      - printf "\n⌛ Formatting project code...\n\n"
+      - printf "\n⌛ Formatting project code...\n"
       - uvx ruff format instant_python test
-
-  autostyle:
-    desc: Apply all code style fixes.
-    cmds:
-      - printf "\n⌛ Applying all code style fixes...\n\n"
-      - task: format
-      - task: lint
-      - 'git add . && git commit -m "style: apply code style fixes"'
-
   watch:
     desc: Run all test with every change.
     cmds:
       - uv run ptw --runner "pytest -n auto test -ra"
 
-  show:
-    desc: Show installed dependencies.
-    cmds:
-      - uv tree
-
-  search:
-    desc: Show package details.
-    cmds:
-      - |
-        read -p "Enter package name to search: " package
-        uv pip show $package
-
-  tox:
-    desc: Run tox tests
-    cmds:
-      - uv run tox
-
+  # ── Security ─────────────────────────────────────────────────────────────────
   audit:
     desc: It audits dependencies and source code
     cmds:
@@ -134,50 +71,3 @@ tasks:
     cmds:
       - printf "\n⌛ Checking secrets...\n\n"
       - uv run -m pre_commit run gitleaks --all-files
-
-  build:
-    desc: Build the project.
-    cmds:
-      - printf "\n⌛ Building the project...\n\n"
-      - uv build
-
-  clean:
-    desc: It cleans up the project, removing the virtual environment and some files
-    cmds:
-      - printf "\n⌛ Cleaning up the project...\n\n"
-      - uv run -m pre_commit clean
-      - uv run -m pre_commit uninstall --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
-      - rm --force --recursive .venv
-      - rm --force --recursive `find . -type f -name '*.py[co]'`
-      - rm --force --recursive `find . -name __pycache__`
-      - rm --force --recursive `find . -name .ruff_cache`
-      - rm --force --recursive `find . -name .mypy_cache`
-      - rm --force --recursive `find . -name .pytest_cache`
-      - rm --force --recursive .coverage
-      - rm --force --recursive .coverage.*
-      - rm --force --recursive coverage.xml
-      - rm --force --recursive htmlcov
-
-  docs-serve:
-    desc: Start server for documentation.
-    cmds:
-      - uv run mkdocs serve
-
-  claude:
-    desc: Create symlinks for Claude Code compatibility (CLAUDE.md → AGENTS.md, .claude → .agents).
-    cmds:
-      - printf "\n⌛ Creating Claude Code symlinks...\n\n"
-      - ln -sf AGENTS.md CLAUDE.md
-      - ln -sfn .agents .claude
-      - ls -la CLAUDE.md .claude
-
-  opencode:
-    desc: Create symlinks for OpenCode compatibility.
-    cmds:
-      - printf "\n⌛ Creating OpenCode symlinks...\n\n"
-      - mkdir -p .opencode
-      - rm -rf .opencode/commands
-      - rm -rf .opencode/agents
-      - ln -s ../.agents/commands .opencode/commands
-      - ln -s ../.agents/agents .opencode/agents
-      - ls -la .opencode

@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  serve:
+    desc: Start server for documentation.
+    cmds:
+      - uv run mkdocs serve
