@@ -39,6 +39,7 @@ def main(
     if ctx.invoked_subcommand is None:
         console.print(ctx.get_help())
 
+
 app.add_typer(version.app)
 
 app.add_typer(init.app)
