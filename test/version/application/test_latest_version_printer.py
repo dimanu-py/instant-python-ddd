@@ -16,3 +16,13 @@ class TestLatestVersionPrinter:
         latest_version = version_printer.execute()
 
         expect(latest_version).to(equal(expected_version))
+
+    def test_should_return_unknown_when_latest_version_is_not_reachable(self) -> None:
+        version_repository = Mock(VersionRepository)
+        version_printer = LatestVersionPrinter(version_repository=version_repository)
+        expected_version = LatestVersion("unknown")
+        expect_call(version_repository).get_latest_version().returns(expected_version)
+
+        latest_version = version_printer.execute()
+
+        expect(latest_version).to(equal(expected_version))
