@@ -22,5 +22,5 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: 📦 Install dependencies
-      run: task install
+      run: task deps:sync-all
       shell: bash

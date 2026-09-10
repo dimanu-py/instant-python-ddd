@@ -71,7 +71,7 @@ jobs:
         uses: ./.github/actions/setup_environment
 
       - name: 🏃 Build package
-        run: task build
+        run: task dev:build
 
       - name: 🚀 Publish
         uses: pypa/gh-action-pypi-publish@release/v1

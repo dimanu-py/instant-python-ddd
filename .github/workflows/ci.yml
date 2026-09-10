@@ -34,30 +34,11 @@ jobs:
 
       - name: 🧐 Check linting
         id: check_lint
-        run: task check-lint
-
-  format:
-    name: format
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛡️ Harden runner
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
-        with:
-          egress-policy: audit
-
-      - name: 📥 Checkout the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: 🛠️ Setup environment
-        uses: ./.github/actions/setup_environment
+        run: task lint
 
       - name: 🧐 Check code format
         id: check_format
-        run: task check-format
+        run: task format
 
   analyze-code-quality:
     name: analyze-code-quality
@@ -160,20 +141,15 @@ jobs:
       - name: 🛠️ Setup environment
         uses: ./.github/actions/setup_environment
 
-      - name: 📦 Install test dependencies
-        run: uv pip install pytest pytest-cov
+      - name: 🏃 Run unit tests
+        run: task tests:unit
 
-      - name: 🏃 Run tests
-        run: uv run pytest --cov --cov-report=xml --cov-branch test -ra -s
+      - name: 🏃 Run integration tests
+        run: task tests:integration
 
-      - name: 📥 Upload coverage report to Codecov
-        uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354  # v6.0.1
-        with:
-          files: coverage.xml
-          flags: unittests
-          name: codecov-coverage
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: dimanu-py/instant-python
+      - name: 🏃 Run acceptance tests
+        run: task tests:acceptance
+
 
   tox-test:
     name: tox
