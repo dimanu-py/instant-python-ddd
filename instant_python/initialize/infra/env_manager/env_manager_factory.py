@@ -1,5 +1,4 @@
 from instant_python.initialize.domain.env_manager import EnvManager
-from instant_python.initialize.infra.env_manager.pdm_env_manager import PdmEnvManager
 from instant_python.initialize.infra.env_manager.system_console import SystemConsole
 from instant_python.initialize.infra.env_manager.uv_env_manager import UvEnvManager
 from instant_python.shared.application_error import ApplicationError
@@ -11,7 +10,6 @@ class EnvManagerFactory:
     def create(dependency_manager: str, console: SystemConsole) -> EnvManager:
         managers = {
             SupportedManagers.UV: UvEnvManager,
-            SupportedManagers.PDM: PdmEnvManager,
         }
         try:
             return managers[SupportedManagers(dependency_manager)](console=console)

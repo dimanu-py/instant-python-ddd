@@ -8,7 +8,7 @@ from test.random_generator import RandomGenerator
 
 
 class GeneralConfigMother:
-    _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = ["uv", "pdm"]
+    _SUPPORTED_DEPENDENCY_MANAGERS: ClassVar[list[str]] = ["uv"]
     _SUPPORTED_PYTHON_VERSIONS: ClassVar[list[str]] = ["3.10", "3.11", "3.12", "3.13"]
     _SUPPORTED_LICENSES: ClassVar[list[str]] = ["MIT", "Apache", "GPL"]
 

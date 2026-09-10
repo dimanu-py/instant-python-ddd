@@ -1,4 +1,2 @@
 args: ('uv', {'name': 'requests', 'version': 'latest', 'is_dev': False, 'group': ''}) => {'exit_code': 0, 'errors': None}
 args: ('uv', {'name': 'pytest', 'version': '6.2.5', 'is_dev': True, 'group': 'testing'}) => {'exit_code': 0, 'errors': None}
-args: ('pdm', {'name': 'requests', 'version': 'latest', 'is_dev': False, 'group': ''}) => {'exit_code': 0, 'errors': None}
-args: ('pdm', {'name': 'pytest', 'version': '6.2.5', 'is_dev': True, 'group': 'testing'}) => {'exit_code': 0, 'errors': None}
