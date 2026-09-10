@@ -60,7 +60,7 @@
         "dependency_manager": {
           "type": "string",
           "description": "Package and dependency manager",
-          "enum": ["uv", "pdm"]
+          "enum": ["uv"]
         }
       }
     },
