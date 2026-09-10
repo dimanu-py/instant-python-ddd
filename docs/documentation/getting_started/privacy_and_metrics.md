@@ -30,7 +30,7 @@ When you successfully run an `ipy` command, we collect:
 | `operating_system` | Your operating system | `Linux`, `Darwin`, `Windows`                 |
 | `command` | The command you executed | `config`, `init`                             |
 | `python_version` | The Python version you configured | `3.12`                                       |
-| `dependency_manager` | The package manager you selected | `pdm`, `uv`                                  |
+| `dependency_manager` | The package manager you selected | `uv`                                  |
 | `template` | The project template you chose | `domain_driven_design`, `clean_architecture` |
 | `built_in_features` | List of features you enabled | `["makefile", "value_objects"]`               |
 

@@ -69,7 +69,7 @@ It has the following fields and restrictions:
 | `author`                    | The author of the project.                         |    | Yes |
 | `license`                   | The license of the project.                        | Must be one of: `MIT`, `Apache` or `GPL`. | Yes |
 | `python_version`            | The Python version to use in the project.          | Must be one of: `3.10`, `3.11`, `3.12` or `3.13`. | Yes |
-| `dependency_manager`        | The project manager to use.                 | Must be either `uv` or `pdm`. | Yes |
+| `dependency_manager`        | The project manager to use.                 | Must be either `uv`. | Yes |
 
 ### Template
 
