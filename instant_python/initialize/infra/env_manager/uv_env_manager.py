@@ -7,7 +7,7 @@ from instant_python.shared.domain.dependency_config import DependencyConfig
 
 
 class UvEnvManager(EnvManager):
-    def __init__(self, console: SystemConsole | None = None) -> None:
+    def __init__(self, console: SystemConsole) -> None:
         self._console = console
         self._system_os = sys.platform
         self._uv = self._set_uv_executable_based_on_os()
