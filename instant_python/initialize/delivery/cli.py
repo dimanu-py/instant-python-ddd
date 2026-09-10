@@ -3,8 +3,8 @@ from pathlib import Path
 import typer
 
 from instant_python.initialize.application.project_initializer import ProjectInitializer
-from instant_python.initialize.infra.env_manager.env_manager_factory import EnvManagerFactory
 from instant_python.initialize.infra.env_manager.system_console import SystemConsole
+from instant_python.initialize.infra.env_manager.uv_env_manager import UvEnvManager
 from instant_python.initialize.infra.formatter.ruff_project_formatter import RuffProjectFormatter
 from instant_python.initialize.infra.renderer.jinja_environment import JinjaEnvironment
 from instant_python.initialize.infra.renderer.jinja_project_renderer import JinjaProjectRenderer
@@ -32,7 +32,7 @@ def create_new_project(
     project_initializer = ProjectInitializer(
         renderer=JinjaProjectRenderer(env=JinjaEnvironment(user_template_path=custom_templates_path)),
         writer=FileSystemProjectWriter(),
-        env_manager=EnvManagerFactory.create(dependency_manager=config.dependency_manager, console=console),
+        env_manager=UvEnvManager(console=console),
         version_control_configurer=GitConfigurer(console=console),
         formatter=RuffProjectFormatter(console=console),
     )
