@@ -1,10 +1,7 @@
-from typing import Annotated
-
 import typer
 from rich.console import Console
 from rich.panel import Panel
 
-from instant_python import __version__
 from instant_python.cli.instant_python_typer import InstantPythonTyper
 from instant_python.config.delivery import cli as config
 from instant_python.initialize.delivery import cli as init
@@ -16,25 +13,9 @@ app = InstantPythonTyper(cls=MetricsMiddleware)
 console = Console()
 
 
-def version_callback(value: bool) -> None:
-    if value:
-        console.print(f"instant-python {__version__}")
-        raise typer.Exit()
-
-
 @app.callback(invoke_without_command=True)
 def main(
     ctx: typer.Context,
-    version: Annotated[
-        bool | None,
-        typer.Option(
-            "--version",
-            "-V",
-            help="Show the application version",
-            callback=version_callback,
-            is_eager=True,
-        ),
-    ] = None,
 ) -> None:
     if ctx.invoked_subcommand is None:
         console.print(ctx.get_help())
