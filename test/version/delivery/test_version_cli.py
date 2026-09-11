@@ -14,4 +14,4 @@ class TestVersionCli:
     def test_should_show_installed_version(self) -> None:
         result = self._runner.invoke(app)
 
-        expect(result).to(contain(__version__))
+        expect(result.output).to(contain(__version__))
