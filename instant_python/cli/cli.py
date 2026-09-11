@@ -7,7 +7,7 @@ from instant_python.config.delivery import cli as config
 from instant_python.initialize.delivery import cli as init
 from instant_python.metrics.delivery.metrics_middleware import MetricsMiddleware
 from instant_python.shared.application_error import ApplicationError
-from instant_python.version.delivery.cli import version
+from instant_python.version.delivery import cli as version
 
 app = InstantPythonTyper(cls=MetricsMiddleware)
 console = Console()
