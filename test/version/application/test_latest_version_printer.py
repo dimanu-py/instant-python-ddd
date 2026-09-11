@@ -1,3 +1,4 @@
+import pytest
 from doublex import Mock, expect_call
 from expects import equal, expect
 
@@ -6,6 +7,7 @@ from instant_python.version.domain.latest_version import LatestVersion
 from instant_python.version.domain.version_repository import VersionRepository
 
 
+@pytest.mark.unit
 class TestLatestVersionPrinter:
     def test_should_return_latest_version(self) -> None:
         version_repository = Mock(VersionRepository)
